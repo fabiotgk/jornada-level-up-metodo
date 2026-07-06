@@ -195,16 +195,27 @@ h2{font-weight:700;line-height:1.05;font-size:clamp(26px,3.8vw,54px)}
 .bridge-map{display:grid;grid-template-columns:minmax(0,1fr) 58px minmax(0,.88fr);gap:14px 18px;align-items:stretch;margin-top:42px;max-width:1440px}
 .bridge-head{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:800;padding:0 22px 3px}
 .bridge-head-mid{text-align:center;padding-left:0;padding-right:0;color:var(--muted-2)}
-.bridge-from,.bridge-to{min-height:74px;border:1px solid var(--card-br);border-radius:13px;padding:16px 22px;display:flex;flex-direction:column;justify-content:center}
+.bridge-from,.bridge-to{min-height:74px;border:1px solid var(--card-br);border-radius:13px;padding:16px 22px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
 .bridge-from{background:rgba(255,255,255,.026)}
 .bridge-to{background:linear-gradient(135deg,rgba(195,156,74,.09),rgba(255,255,255,.028));border-color:rgba(231,205,143,.16)}
+.bridge-from::after,.bridge-to::after{content:"";position:absolute;inset:-1px;border-radius:inherit;background:linear-gradient(100deg,transparent 0%,rgba(231,205,143,.06) 28%,rgba(231,205,143,.22) 48%,rgba(231,205,143,.06) 68%,transparent 100%);opacity:0;transform:translateX(-120%);pointer-events:none}
+.bridge-from b,.bridge-from span,.bridge-to b,.bridge-to span{position:relative;z-index:1}
 .bridge-from b,.bridge-to b{display:block;font-size:clamp(14px,1.12vw,17px);line-height:1.18}
 .bridge-from b{color:var(--paper);font-weight:600}
 .bridge-to b{color:var(--gold-lt);font-weight:800}
 .bridge-from span,.bridge-to span{display:block;margin-top:5px;color:var(--muted);font-size:clamp(11.5px,.95vw,13.5px);line-height:1.35;font-weight:300}
 .bridge-arrow{position:relative;display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700}
-.bridge-arrow::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,rgba(195,156,74,0),rgba(195,156,74,.45),rgba(195,156,74,0))}
+.bridge-arrow::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,rgba(195,156,74,0),rgba(195,156,74,.45),rgba(195,156,74,0));transform:scaleX(.1);transform-origin:left;opacity:.18}
 .bridge-arrow span{position:relative;z-index:1;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(195,156,74,.1);border:1px solid var(--line);box-shadow:0 0 22px rgba(195,156,74,.18)}
+.slide.active .bridge-from::after,.slide.active .bridge-to::after{animation:bridgeSweep 1.15s var(--ease) both;animation-delay:calc(var(--seq,700)*1ms)}
+.slide.active .bridge-from,.slide.active .bridge-to{animation:bridgeGlow 1.15s var(--ease);animation-delay:calc(var(--seq,700)*1ms)}
+.slide.active .bridge-arrow::before{animation:bridgeLine .8s var(--ease) both;animation-delay:calc((var(--seq,700) + 120)*1ms)}
+.slide.active .bridge-arrow span{animation:bridgePulse .8s var(--ease) both;animation-delay:calc((var(--seq,700) + 190)*1ms)}
+@keyframes bridgeSweep{0%{opacity:0;transform:translateX(-120%)}18%{opacity:1}82%{opacity:1}100%{opacity:0;transform:translateX(120%)}}
+@keyframes bridgeGlow{0%,100%{box-shadow:none;border-color:var(--card-br)}42%{box-shadow:0 0 0 1px rgba(231,205,143,.12),0 16px 44px rgba(195,156,74,.11);border-color:rgba(231,205,143,.32)}}
+@keyframes bridgeLine{0%{opacity:.12;transform:scaleX(.08)}55%{opacity:1;transform:scaleX(1)}100%{opacity:.55;transform:scaleX(1)}}
+@keyframes bridgePulse{0%{transform:scale(.84);box-shadow:0 0 0 rgba(195,156,74,0)}48%{transform:scale(1.14);box-shadow:0 0 28px rgba(195,156,74,.42)}100%{transform:scale(1);box-shadow:0 0 22px rgba(195,156,74,.18)}}
+@media(prefers-reduced-motion:reduce){.slide.active .bridge-from,.slide.active .bridge-to,.slide.active .bridge-from::after,.slide.active .bridge-to::after,.slide.active .bridge-arrow::before,.slide.active .bridge-arrow span{animation:none}}
 .bridge-foot{grid-column:1/-1;margin-top:8px;padding:18px 22px;border-left:2px solid var(--gold);background:rgba(195,156,74,.045);border-radius:0 13px 13px 0;color:#cabfa9;font-size:clamp(12.5px,1.05vw,15.5px);line-height:1.45;font-weight:300}
 .bridge-foot b{color:var(--gold-lt);font-weight:700}
 .method-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
@@ -317,9 +328,9 @@ h1{font-size:clamp(34px,11vw,52px)}.divider h1{font-size:clamp(46px,16vw,84px)}}
         <h1 class="serif anim" style="--d:120">Mapa + <span class="grad-text">gargalo</span></h1>
         <p class="lead anim" style="--d:220">O ALAVANCA parte de uma provocação: empresas não travam por falta de esforço. Elas travam porque o esforço está espalhado longe do ponto que governa o resultado.</p>
         <div class="concept-formula">
-          <div class="formula-card anim" style="--d:340"><div class="label">O mapa</div><h3>Business Model Canvas</h3></div>
+          <div class="formula-card anim" style="--d:340"><div class="label">O mapa</div><h3>Modelo de Negócio</h3></div>
           <div class="formula-plus anim" style="--d:430">+</div>
-          <div class="formula-card anim" style="--d:520"><div class="label">O foco</div><h3>Teoria das Restrições</h3></div>
+          <div class="formula-card anim" style="--d:520"><div class="label">O foco</div><h3>Identificação do Gargalo</h3></div>
           <div class="formula-result anim" style="--d:640">O Canvas revela o terreno. A restrição acende o ponto de pressão. O método transforma diagnóstico em uma ação capaz de mover o todo.</div>
         </div>
         <div class="concept-thesis anim" style="--d:760"><div class="mark">1</div><div class="text">A próxima alavanca não é o que parece urgente. <span>É o ponto que muda o sistema inteiro.</span></div></div>
@@ -366,7 +377,7 @@ h1{font-size:clamp(34px,11vw,52px)}.divider h1{font-size:clamp(46px,16vw,84px)}}
     <h2 class="serif anim" style="--d:120">O mapa mais o <span class="gold">raio-x</span></h2>
     <p class="lead anim" style="--d:200">Sozinhas, as ferramentas têm ponto cego. Juntas, uma mostra o modelo inteiro e a outra obriga foco no ponto que realmente limita o avanço.</p>
     <div class="lens-grid">
-      <div class="lens-card anim" style="--d:320"><div class="pt">Canvas</div><h3>Vê o todo</h3><p>Evita escolher um gargalo sem entender o modelo. Mostra clientes, valor, receita, custos, recursos e execução na mesma leitura.</p></div>
+      <div class="lens-card anim" style="--d:320"><div class="pt">Canvas</div><h3>Olhar o todo</h3><p>Evita escolher um gargalo sem entender o modelo. Mostra clientes, valor, receita, custos, recursos e execução na mesma leitura.</p></div>
       <div class="lens-plus anim" style="--d:430">+</div>
       <div class="lens-card anim" style="--d:540"><div class="pt">Restrições</div><h3>Escolhe o alvo</h3><p>Evita tentar melhorar tudo ao mesmo tempo. Aponta o ponto que mais trava o resultado agora.</p></div>
     </div>
@@ -378,11 +389,11 @@ h1{font-size:clamp(34px,11vw,52px)}.divider h1{font-size:clamp(46px,16vw,84px)}}
     <p class="lead anim" style="--d:200">No método, lemos o negócio como um Canvas simplificado. Depois usamos a lógica das restrições para escolher a área que mais trava o caixa agora.</p>
     <div class="bridge-map">
       <div class="bridge-head anim" style="--d:300">No Canvas</div><div class="bridge-head bridge-head-mid anim" style="--d:300">leitura</div><div class="bridge-head anim" style="--d:300">No ALAVANCA</div>
-      <div class="bridge-from anim" style="--d:360"><b>Receita + custos</b><span>Como o dinheiro entra, sai e sustenta o modelo.</span></div><div class="bridge-arrow anim" style="--d:410"><span>›</span></div><div class="bridge-to anim" style="--d:460"><b>Caixa e Margem</b><span>O financeiro como ponto de verdade.</span></div>
-      <div class="bridge-from anim" style="--d:500"><b>Clientes + proposta + canais</b><span>Quem compra, por que compra e por onde chega.</span></div><div class="bridge-arrow anim" style="--d:550"><span>›</span></div><div class="bridge-to anim" style="--d:600"><b>Vendas, Marketing e Cliente</b><span>A demanda vista como sistema.</span></div>
-      <div class="bridge-from anim" style="--d:640"><b>Atividades + recursos-chave</b><span>O que precisa acontecer bem para entregar valor.</span></div><div class="bridge-arrow anim" style="--d:690"><span>›</span></div><div class="bridge-to anim" style="--d:740"><b>Processos</b><span>A execução que tira a gestão do improviso.</span></div>
-      <div class="bridge-from anim" style="--d:780"><b>Relacionamento + time</b><span>Como a empresa mantém clientes e distribui responsabilidade.</span></div><div class="bridge-arrow anim" style="--d:830"><span>›</span></div><div class="bridge-to anim" style="--d:880"><b>Pessoas e Liderança</b><span>Rotina, papéis e comando.</span></div>
-      <div class="bridge-from anim" style="--d:920"><b>Parcerias + posição de mercado</b><span>Onde a empresa joga e com quem se fortalece.</span></div><div class="bridge-arrow anim" style="--d:970"><span>›</span></div><div class="bridge-to anim" style="--d:1020"><b>Estratégia</b><span>Escolhas que orientam crescimento.</span></div>
+      <div class="bridge-from anim" style="--d:360;--seq:720"><b>Receita + custos</b><span>Como o dinheiro entra, sai e sustenta o modelo.</span></div><div class="bridge-arrow anim" style="--d:410;--seq:720"><span>›</span></div><div class="bridge-to anim" style="--d:460;--seq:720"><b>Caixa e Margem</b><span>O financeiro como ponto de verdade.</span></div>
+      <div class="bridge-from anim" style="--d:500;--seq:1040"><b>Clientes + proposta + canais</b><span>Quem compra, por que compra e por onde chega.</span></div><div class="bridge-arrow anim" style="--d:550;--seq:1040"><span>›</span></div><div class="bridge-to anim" style="--d:600;--seq:1040"><b>Vendas, Marketing e Cliente</b><span>A demanda vista como sistema.</span></div>
+      <div class="bridge-from anim" style="--d:640;--seq:1360"><b>Atividades + recursos-chave</b><span>O que precisa acontecer bem para entregar valor.</span></div><div class="bridge-arrow anim" style="--d:690;--seq:1360"><span>›</span></div><div class="bridge-to anim" style="--d:740;--seq:1360"><b>Processos</b><span>A execução que tira a gestão do improviso.</span></div>
+      <div class="bridge-from anim" style="--d:780;--seq:1680"><b>Relacionamento + time</b><span>Como a empresa mantém clientes e distribui responsabilidade.</span></div><div class="bridge-arrow anim" style="--d:830;--seq:1680"><span>›</span></div><div class="bridge-to anim" style="--d:880;--seq:1680"><b>Pessoas e Liderança</b><span>Rotina, papéis e comando.</span></div>
+      <div class="bridge-from anim" style="--d:920;--seq:2000"><b>Parcerias + posição de mercado</b><span>Onde a empresa joga e com quem se fortalece.</span></div><div class="bridge-arrow anim" style="--d:970;--seq:2000"><span>›</span></div><div class="bridge-to anim" style="--d:1020;--seq:2000"><b>Estratégia</b><span>Escolhas que orientam crescimento.</span></div>
       <div class="bridge-foot anim" style="--d:1080"><b>Diagnóstico, gargalo e 1 passo:</b> o Canvas simplificado mostra o todo; a restrição escolhe onde agir primeiro.</div>
     </div></section>
 <section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
