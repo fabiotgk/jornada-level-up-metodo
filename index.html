@@ -129,33 +129,43 @@ h2{font-weight:700;line-height:1.05;font-size:clamp(26px,3.8vw,54px)}
 .oc .num{position:absolute;right:16px;top:0;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:68px;opacity:.06}
 .elevate{margin-top:30px;display:flex;align-items:center;gap:18px;padding:18px 26px;border-left:2px solid var(--gold);background:rgba(195,156,74,.04);border-radius:0 12px 12px 0;max-width:74ch}
 .elevate img{height:32px;opacity:.85}.elevate p{color:var(--muted);font-size:clamp(12.5px,1.1vw,15.5px);line-height:1.5;font-weight:300}.elevate b{color:var(--gold)}
-.concept-hero{max-width:1050px}.concept-hero h1{font-size:clamp(46px,7vw,108px);max-width:11ch}
+.concept-intro{justify-content:flex-start;padding-top:14vh}
+.concept-hero{max-width:1280px}.concept-hero h1{font-size:clamp(46px,7vw,108px);max-width:11ch}
 .concept-formula{display:flex;align-items:center;gap:18px;margin-top:36px;flex-wrap:wrap}
 .formula-card{min-width:220px;padding:22px 24px;border:1px solid var(--card-br);background:var(--card);border-radius:14px}
 .formula-card .label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:9px}
 .formula-card h3{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.8vw,42px);line-height:1;font-weight:700}
 .formula-plus{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,60px);color:var(--gold);line-height:1}
 .formula-result{flex:1;min-width:300px;padding:22px 26px;border-left:2px solid var(--gold);background:rgba(195,156,74,.045);border-radius:0 14px 14px 0;color:#cabfa9;font-size:clamp(13px,1.2vw,17px);line-height:1.45;font-weight:300}
-.canvas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px;max-width:980px}
-.canvas-block{min-height:104px;border:1px solid var(--card-br);background:rgba(255,255,255,.026);border-radius:12px;padding:16px 17px;position:relative;overflow:hidden}
+.canvas-slide,.toc-slide{justify-content:flex-start;padding-top:12vh}
+.canvas-slide h2{font-size:clamp(32px,3.35vw,62px);max-width:1500px}
+.canvas-slide .lead{max-width:72ch}
+.canvas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px;width:min(100%,1500px)}
+.canvas-block{min-height:132px;border:1px solid var(--card-br);background:rgba(255,255,255,.026);border-radius:13px;padding:22px 24px;position:relative;overflow:hidden}
 .canvas-block::before{content:attr(data-n);position:absolute;right:13px;top:8px;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:42px;color:rgba(195,156,74,.08)}
-.canvas-block b{display:block;color:var(--gold-lt);font-size:clamp(13px,1.08vw,15.5px);margin-bottom:7px}
-.canvas-block span{display:block;color:var(--muted);font-size:clamp(11px,.96vw,13.5px);line-height:1.35;font-weight:300}
-.case-note{margin-top:20px;max-width:980px;padding:16px 20px;border-left:2px solid var(--gold);background:rgba(195,156,74,.04);border-radius:0 12px 12px 0;color:var(--muted);font-size:clamp(12px,1.05vw,15px);line-height:1.45;font-weight:300}
+.canvas-block b{display:block;color:var(--gold-lt);font-size:clamp(15px,1.15vw,18px);margin-bottom:10px}
+.canvas-block span{display:block;color:var(--muted);font-size:clamp(12.5px,1vw,15px);line-height:1.35;font-weight:300}
+.case-note{margin-top:24px;width:min(100%,1500px);padding:20px 24px;border-left:2px solid var(--gold);background:rgba(195,156,74,.04);border-radius:0 12px 12px 0;color:var(--muted);font-size:clamp(13px,1.05vw,16px);line-height:1.45;font-weight:300}
 .case-note b{color:var(--gold-lt);font-weight:600}
-.toc-wrap{display:grid;grid-template-columns:minmax(280px,.9fr) 1.1fr;gap:28px;align-items:center;margin-top:30px}
-.weak-link{position:relative;min-height:270px;border:1px solid var(--card-br);background:linear-gradient(135deg,rgba(255,255,255,.035),rgba(195,156,74,.035));border-radius:16px;padding:28px;overflow:hidden}
-.weak-link::before{content:"";position:absolute;inset:auto -20% 38% -20%;height:34px;border-top:1px solid rgba(231,205,143,.25);border-bottom:1px solid rgba(231,205,143,.25);transform:rotate(-9deg)}
-.chain-row{position:absolute;left:22px;right:22px;top:48%;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;transform:translateY(-50%) rotate(-9deg)}
-.chain-link{height:54px;border:2px solid rgba(231,205,143,.28);border-radius:40px;background:rgba(12,15,23,.75)}
-.chain-link.weak{border-color:var(--gold);box-shadow:0 0 28px rgba(195,156,74,.45);background:rgba(195,156,74,.09)}
-.weak-link .tag{position:absolute;left:28px;bottom:28px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700}
-.weak-link .line{position:absolute;right:28px;bottom:25px;max-width:210px;color:#cabfa9;font-size:clamp(13px,1.1vw,16px);line-height:1.35;font-weight:300}
-.toc-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.toc-step{border:1px solid var(--card-br);background:var(--card);border-radius:12px;padding:18px 16px;min-height:154px}
-.toc-step .n{font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1;color:var(--gold);font-weight:700;margin-bottom:12px}
-.toc-step b{display:block;color:var(--paper);font-size:clamp(13px,1.08vw,16px);margin-bottom:7px}
-.toc-step span{display:block;color:var(--muted);font-size:clamp(11px,.95vw,13.5px);line-height:1.35;font-weight:300}
+.toc-slide h2{font-size:clamp(32px,3.25vw,60px)}
+.toc-slide .lead{max-width:66ch}
+.toc-wrap{display:grid;grid-template-columns:minmax(460px,.96fr) minmax(580px,1.04fr);gap:38px;align-items:stretch;margin-top:36px;width:min(100%,1500px)}
+.weak-link{position:relative;min-height:356px;border:1px solid rgba(231,205,143,.16);background:linear-gradient(90deg,rgba(12,15,23,.08),rgba(12,15,23,.42) 62%,rgba(12,15,23,.76)),url('assets/toc-weak-link-chain.jpg');background-size:cover;background-position:center;border-radius:18px;padding:30px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.38),inset 0 0 0 1px rgba(255,255,255,.02)}
+.weak-link::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 49% 48%,rgba(195,156,74,.16),transparent 38%),linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.52));z-index:1}
+.weak-link::after{content:"";position:absolute;inset:0;border-radius:18px;border:1px solid rgba(195,156,74,.14);z-index:3;pointer-events:none}
+.weak-copy{position:absolute;left:30px;right:30px;bottom:30px;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:22px}
+.weak-link .tag{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:800;text-shadow:0 2px 10px rgba(0,0,0,.75);white-space:nowrap}
+.weak-link .line{max-width:330px;padding:16px 18px;border-radius:13px;border:1px solid rgba(231,205,143,.16);background:rgba(12,15,23,.62);backdrop-filter:blur(6px);color:#e3d7bd;font-size:clamp(13px,1.08vw,16px);line-height:1.38;font-weight:300;box-shadow:0 18px 40px rgba(0,0,0,.32)}
+.toc-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;align-content:center}
+.toc-step{grid-column:span 2;border:1px solid var(--card-br);background:linear-gradient(145deg,rgba(255,255,255,.043),rgba(255,255,255,.017));border-radius:15px;padding:24px 22px;min-height:162px;position:relative;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.018);transition:transform .45s var(--ease),border-color .45s,background .45s}
+.toc-step:nth-child(-n+2){grid-column:span 3}
+.toc-step::before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:var(--grad-gold);opacity:.65;transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease) .25s}
+.slide.active .toc-step.anim::before{transform:scaleX(1)}
+.toc-step:hover{transform:translateY(-4px);border-color:rgba(231,205,143,.22);background:linear-gradient(145deg,rgba(195,156,74,.07),rgba(255,255,255,.018))}
+.toc-step .n{position:absolute;right:18px;top:12px;font-family:'Cormorant Garamond',serif;font-size:52px;line-height:1;color:var(--gold);font-weight:700;opacity:.28}
+.toc-step b{display:block;color:var(--paper);font-size:clamp(16px,1.2vw,20px);margin:28px 0 8px;line-height:1.1}
+.toc-step span{display:block;color:var(--muted);font-size:clamp(12px,.98vw,14.5px);line-height:1.38;font-weight:300;max-width:24ch}
+.toc-note{max-width:1500px;margin-top:22px}
 .lens-grid{display:grid;grid-template-columns:1fr .34fr 1fr;gap:18px;align-items:stretch;margin-top:34px}
 .lens-card{border:1px solid var(--card-br);background:var(--card);border-radius:14px;padding:26px 24px}
 .lens-card .pt{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
@@ -163,10 +173,24 @@ h2{font-weight:700;line-height:1.05;font-size:clamp(26px,3.8vw,54px)}
 .lens-card p{color:var(--muted);font-size:clamp(12px,1.05vw,15px);line-height:1.45;font-weight:300}
 .lens-plus{display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:clamp(54px,7vw,110px);color:var(--gold);opacity:.9}
 .synthesis{margin-top:20px;padding:20px 24px;border-left:2px solid var(--gold);background:rgba(195,156,74,.045);border-radius:0 14px 14px 0;color:#cabfa9;font-size:clamp(14px,1.22vw,18px);line-height:1.45;font-weight:300}
-.bridge-map{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px;max-width:1040px}
-.bridge-row{display:grid;grid-template-columns:1.05fr .95fr;gap:14px;align-items:center;border:1px solid var(--card-br);background:var(--card);border-radius:12px;padding:15px 18px}
-.bridge-row .from{color:var(--muted);font-size:clamp(11.5px,.98vw,13.5px);line-height:1.35;font-weight:300}
-.bridge-row .to{color:var(--gold-lt);font-weight:700;font-size:clamp(13px,1.08vw,15.5px);line-height:1.25}
+.bridge-slide{justify-content:flex-start;padding-top:12vh}
+.bridge-slide h2{font-size:clamp(30px,3.45vw,58px);max-width:1440px}
+.bridge-slide .lead{max-width:64ch;margin-top:18px}
+.bridge-map{display:grid;grid-template-columns:minmax(0,1fr) 58px minmax(0,.88fr);gap:14px 18px;align-items:stretch;margin-top:42px;max-width:1440px}
+.bridge-head{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:800;padding:0 22px 3px}
+.bridge-head-mid{text-align:center;padding-left:0;padding-right:0;color:var(--muted-2)}
+.bridge-from,.bridge-to{min-height:74px;border:1px solid var(--card-br);border-radius:13px;padding:16px 22px;display:flex;flex-direction:column;justify-content:center}
+.bridge-from{background:rgba(255,255,255,.026)}
+.bridge-to{background:linear-gradient(135deg,rgba(195,156,74,.09),rgba(255,255,255,.028));border-color:rgba(231,205,143,.16)}
+.bridge-from b,.bridge-to b{display:block;font-size:clamp(14px,1.12vw,17px);line-height:1.18}
+.bridge-from b{color:var(--paper);font-weight:600}
+.bridge-to b{color:var(--gold-lt);font-weight:800}
+.bridge-from span,.bridge-to span{display:block;margin-top:5px;color:var(--muted);font-size:clamp(11.5px,.95vw,13.5px);line-height:1.35;font-weight:300}
+.bridge-arrow{position:relative;display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700}
+.bridge-arrow::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,rgba(195,156,74,0),rgba(195,156,74,.45),rgba(195,156,74,0))}
+.bridge-arrow span{position:relative;z-index:1;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(195,156,74,.1);border:1px solid var(--line);box-shadow:0 0 22px rgba(195,156,74,.18)}
+.bridge-foot{grid-column:1/-1;margin-top:8px;padding:18px 22px;border-left:2px solid var(--gold);background:rgba(195,156,74,.045);border-radius:0 13px 13px 0;color:#cabfa9;font-size:clamp(12.5px,1.05vw,15.5px);line-height:1.45;font-weight:300}
+.bridge-foot b{color:var(--gold-lt);font-weight:700}
 .method-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
 .move{position:relative;border:1px solid var(--card-br);background:var(--card);border-radius:14px;padding:24px 22px;min-height:210px;overflow:hidden}
 .move::before{content:attr(data-n);position:absolute;right:16px;top:4px;font-family:'Cormorant Garamond',serif;font-size:78px;font-weight:700;color:rgba(195,156,74,.07);line-height:1}
@@ -230,11 +254,12 @@ h2{font-weight:700;line-height:1.05;font-size:clamp(26px,3.8vw,54px)}
 @media(max-width:980px){
 .slide{padding:10vh 6vw 15vh;justify-content:flex-start;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
 .slide.cover,.slide.divider{justify-content:center}
-.cards,.mapa,.grid8,.weeks,.outcome,.canvas-grid,.bridge-map,.method-flow{grid-template-columns:repeat(2,1fr)}.twocol,.cadband,.toc-wrap,.lens-grid{grid-template-columns:1fr}
+.cards,.mapa,.grid8,.weeks,.outcome,.canvas-grid,.method-flow{grid-template-columns:repeat(2,1fr)}.twocol,.cadband,.toc-wrap,.lens-grid{grid-template-columns:1fr}
+.bridge-slide{padding-top:10vh}.bridge-map{grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr);gap:12px}.bridge-head{padding-left:16px}.bridge-from,.bridge-to{padding:15px 16px}
 .tl-row{grid-template-columns:repeat(2,1fr);gap:22px 14px}.tl-track,.tl-fill{display:none}.flow{flex-direction:column;gap:12px}.flow .step:not(:last-child)::after{display:none}
 .cover .col-chip{display:none}.kicker-top .lbl{display:none}.mtable .ind{display:none}
 .cover .lockup{height:auto;width:min(82%,340px)}
-.toc-steps{grid-template-columns:repeat(2,1fr)}.lens-plus{display:none}.formula-result{min-width:100%}.concept-hero h1{max-width:100%}
+.toc-steps{grid-template-columns:repeat(6,1fr)}.lens-plus{display:none}.formula-result{min-width:100%}.concept-hero h1{max-width:100%}
 /* roadmap → vertical no mobile */
 .road-slide{padding:10vh 6vw 15vh}
 .roadmap{height:auto !important;margin-top:0}
@@ -244,8 +269,9 @@ h2{font-weight:700;line-height:1.05;font-size:clamp(26px,3.8vw,54px)}
 .topbar{height:74px;padding:18px 6vw 10px;align-items:flex-start;background:linear-gradient(180deg,rgba(12,15,23,.96),rgba(12,15,23,.72) 72%,transparent)}
 .topbar .wm{height:22px}.kicker-top{font-size:10px;letter-spacing:.22em}
 .slide{padding-top:96px;padding-bottom:136px}.slide.cover,.slide.divider{justify-content:center}
-.cards,.mapa,.grid8,.weeks,.outcome,.tl-row,.canvas-grid,.toc-steps,.bridge-map,.method-flow{grid-template-columns:1fr}
-.concept-formula{gap:12px}.formula-card{width:100%;min-width:0}.formula-plus{display:none}.weak-link{min-height:240px}.chain-row{left:20px;right:20px;top:36%;grid-template-columns:repeat(5,1fr);gap:5px}.chain-link{height:38px}.weak-link .line{left:28px;right:24px;bottom:56px;max-width:none}.weak-link .tag{bottom:24px}.quote-band{display:block}.quote-band .source{text-align:left;margin-top:16px}.nav-dots,.hint{display:none}
+.cards,.mapa,.grid8,.weeks,.outcome,.tl-row,.canvas-grid,.toc-steps,.method-flow{grid-template-columns:1fr}
+.bridge-slide{padding-top:96px}.bridge-slide h2{font-size:clamp(26px,8.6vw,39px)}.bridge-map{grid-template-columns:1fr;gap:0;margin-top:26px}.bridge-head,.bridge-head-mid,.bridge-arrow{display:none}.bridge-from,.bridge-to{min-height:0;padding:14px 18px}.bridge-from{border-radius:12px 12px 0 0;border-bottom:none}.bridge-to{border-radius:0 0 12px 12px;margin-bottom:12px}.bridge-foot{grid-column:auto;margin-top:2px}
+.toc-step,.toc-step:nth-child(-n+2){grid-column:auto}.toc-step{min-height:138px}.toc-step b{margin-top:22px}.weak-link{min-height:300px;background-position:center}.weak-copy{display:block;left:22px;right:22px;bottom:22px}.weak-link .line{max-width:none;margin-top:12px;padding:13px 14px}.weak-link .tag{white-space:normal}.concept-formula{gap:12px}.formula-card{width:100%;min-width:0}.formula-plus{display:none}.quote-band{display:block}.quote-band .source{text-align:left;margin-top:16px}.nav-dots,.hint{display:none}
 h1{font-size:clamp(34px,11vw,52px)}.divider h1{font-size:clamp(46px,16vw,84px)}}
 </style></head><body>
 <div class="progress" id="prog"></div>
@@ -259,7 +285,7 @@ h1{font-size:clamp(34px,11vw,52px)}.divider h1{font-size:clamp(46px,16vw,84px)}}
     <h1 class="serif anim" style="--d:320">Método <span class="grad-text">ALAVANCA</span></h1>
     <p class="sub anim" style="--d:460">O roteiro de 12 meses dentro do Level UP — do diagnóstico ao <span class="gold">crescimento com controle</span>, com entrega mensurável a cada encontro.</p>
     <div class="col-chip anim" style="--d:600"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkCAYAAAD7PHgWAAABaElEQVR4nO2X0W2DMBBAXxEDZASyAd2A/PanbNB2grYTJIzQ/0pNNkgniKUswAjuBh6hH8bC0EAgBoMqnoQAH0JPh+903J0/H7CIgITpUEAOSLMQFucV8AWkfn0a2QPvgAqKhRPzkQN4RjsRAFsgnlCmiRjYBcwrc3WeAuaZPUMUtgQVcPTjQYou1D8OISC43FoU8DKSUJ2Ey4J5CGRc733RoDol8ko8MxnM0NXcxInhJSWwbolngDB9cIf+nKL2Al8o61oAG7QTdpHsi2MK7psCQVNgLrS1GZvNqBYtdBWUY0q00VXQkAKP1v03upnHwGvtWdNDt1Q7gEJPKp3oKxijJw3DD1pwVVuHUjCh2mclPQRnXySLoCuLoCuLoCuLoCuLoCv/TlDgefS6RXCNHmAPeJDtO24ZBNUfLOUq0sRQezBHZ/aNgbM6ZJFI4INyCxiUy0vHqmJhXR9q973w0WaO6IzetAV+AZRZO5itj/+MAAAAAElFTkSuQmCC" alt=""><div><div class="n">12</div><div class="l">Meses · Foundation</div></div></div></section>
-<section class="slide"><div class="bg-glow glow-a"></div><div class="bg-glow glow-b"></div><div class="vign"></div>
+<section class="slide concept-intro"><div class="bg-glow glow-a"></div><div class="bg-glow glow-b"></div><div class="vign"></div>
     <div class="kicker anim" style="--d:40">Base conceitual do método</div>
     <div class="concept-hero">
       <h1 class="serif anim" style="--d:120">Mapa + <span class="grad-text">gargalo</span></h1>
@@ -271,7 +297,7 @@ h1{font-size:clamp(34px,11vw,52px)}.divider h1{font-size:clamp(46px,16vw,84px)}}
         <div class="formula-result anim" style="--d:640">O Canvas mostra o negócio inteiro em uma página. A Teoria das Restrições mostra o elo mais fraco desse mapa. Juntos, eles dizem onde agir primeiro.</div>
       </div>
     </div></section>
-<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+<section class="slide canvas-slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
     <div class="kicker anim" style="--d:40">Parte 1 · Business Model Canvas</div>
     <h2 class="serif anim" style="--d:120">Enxergar como o negócio <span class="gold">cria, entrega e captura valor</span></h2>
     <p class="lead anim" style="--d:200">O Canvas transforma o modelo em uma página discutível. Quando tudo fica visível, aparecem os pilares fortes, as fragilidades e as dependências.</p>
@@ -287,12 +313,12 @@ h1{font-size:clamp(34px,11vw,52px)}.divider h1{font-size:clamp(46px,16vw,84px)}}
       <div class="canvas-block anim" style="--d:780" data-n="9"><b>Estrutura de custos</b><span>Quais custos sustentam o modelo?</span></div>
     </div>
     <div class="case-note anim" style="--d:880"><b>Exemplo · Netflix.</b> Proposta de valor clara, receita recorrente e catálogo como recurso-chave explicam a força do caixa antes de qualquer ação.</div></section>
-<section class="slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
+<section class="slide toc-slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
     <div class="kicker anim" style="--d:40">Parte 2 · Teoria das Restrições</div>
     <h2 class="serif anim" style="--d:120">Saber exatamente <span class="gold">onde agir</span></h2>
     <p class="lead anim" style="--d:200">Todo sistema é limitado por um ponto de cada vez. Reforçar elos fortes gera movimento, mas não aumenta a força da corrente.</p>
     <div class="toc-wrap">
-      <div class="weak-link anim" style="--d:300"><div class="chain-row"><div class="chain-link"></div><div class="chain-link"></div><div class="chain-link weak"></div><div class="chain-link"></div><div class="chain-link"></div></div><div class="tag">Imagem-chave</div><div class="line">A empresa rompe no elo mais fraco. É nele que o resultado do todo está preso.</div></div>
+      <div class="weak-link anim" style="--d:300"><div class="weak-copy"><div class="tag">Imagem-chave</div><div class="line">A empresa rompe no elo mais fraco. É nele que o resultado do todo está preso.</div></div></div>
       <div class="toc-steps">
         <div class="toc-step anim" style="--d:390"><div class="n">1</div><b>Identificar</b><span>Achar o gargalo que mais limita o resultado.</span></div>
         <div class="toc-step anim" style="--d:470"><div class="n">2</div><b>Explorar</b><span>Tirar o máximo do gargalo com o que já existe.</span></div>
@@ -301,7 +327,7 @@ h1{font-size:clamp(34px,11vw,52px)}.divider h1{font-size:clamp(46px,16vw,84px)}}
         <div class="toc-step anim" style="--d:710"><div class="n">5</div><b>Repetir</b><span>Resolvido um gargalo, outro aparece.</span></div>
       </div>
     </div>
-    <div class="case-note anim" style="--d:820"><b>Exemplo · A Meta.</b> A fábrica destrava quando o gestor para de acelerar tudo e passa a proteger a máquina que limitava a produção.</div></section>
+    <div class="case-note toc-note anim" style="--d:820"><b>Exemplo · A Meta.</b> A fábrica destrava quando o gestor para de acelerar tudo e passa a proteger a máquina que limitava a produção.</div></section>
 <section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
     <div class="kicker anim" style="--d:40">Parte 3 · A combinação</div>
     <h2 class="serif anim" style="--d:120">O mapa mais o <span class="gold">raio-x</span></h2>
@@ -313,17 +339,18 @@ h1{font-size:clamp(34px,11vw,52px)}.divider h1{font-size:clamp(46px,16vw,84px)}}
     </div>
     <div class="synthesis anim" style="--d:660">Use o Canvas para enxergar o modelo inteiro. Use a Teoria das Restrições para encontrar, dentro desse modelo, o elo mais fraco. Aja nele primeiro.</div>
     <div class="case-note anim" style="--d:760"><b>Exemplo · Pizzaria cheia que não lucra.</b> O Canvas mostra clientes, demanda e receita. A restrição revela que o forno único limita quantas pizzas saem por noite.</div></section>
-<section class="slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
+<section class="slide bridge-slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
     <div class="kicker anim" style="--d:40">Parte 4 · Como vira ALAVANCA</div>
     <h2 class="serif anim" style="--d:120">As 6 áreas são uma leitura rápida do <span class="gold">modelo de negócio</span></h2>
     <p class="lead anim" style="--d:200">No método, lemos o negócio como um Canvas simplificado. Depois usamos a lógica das restrições para escolher a área que mais trava o caixa agora.</p>
     <div class="bridge-map">
-      <div class="bridge-row anim" style="--d:300"><div class="from">Fontes de receita + estrutura de custos</div><div class="to">Caixa e Margem</div></div>
-      <div class="bridge-row anim" style="--d:380"><div class="from">Segmentos, proposta e canais</div><div class="to">Vendas, Marketing e Cliente</div></div>
-      <div class="bridge-row anim" style="--d:460"><div class="from">Atividades e recursos-chave</div><div class="to">Processos</div></div>
-      <div class="bridge-row anim" style="--d:540"><div class="from">Relacionamento, rotina e time</div><div class="to">Pessoas e Liderança</div></div>
-      <div class="bridge-row anim" style="--d:620"><div class="from">Parcerias e posição no mercado</div><div class="to">Estratégia</div></div>
-      <div class="bridge-row anim" style="--d:700"><div class="from">Diagnóstico, gargalo e 1 passo</div><div class="to">Ver o todo · agir no ponto</div></div>
+      <div class="bridge-head anim" style="--d:300">No Canvas</div><div class="bridge-head bridge-head-mid anim" style="--d:300">leitura</div><div class="bridge-head anim" style="--d:300">No ALAVANCA</div>
+      <div class="bridge-from anim" style="--d:360"><b>Receita + custos</b><span>Como o dinheiro entra, sai e sustenta o modelo.</span></div><div class="bridge-arrow anim" style="--d:410"><span>›</span></div><div class="bridge-to anim" style="--d:460"><b>Caixa e Margem</b><span>O financeiro como ponto de verdade.</span></div>
+      <div class="bridge-from anim" style="--d:500"><b>Clientes + proposta + canais</b><span>Quem compra, por que compra e por onde chega.</span></div><div class="bridge-arrow anim" style="--d:550"><span>›</span></div><div class="bridge-to anim" style="--d:600"><b>Vendas, Marketing e Cliente</b><span>A demanda vista como sistema.</span></div>
+      <div class="bridge-from anim" style="--d:640"><b>Atividades + recursos-chave</b><span>O que precisa acontecer bem para entregar valor.</span></div><div class="bridge-arrow anim" style="--d:690"><span>›</span></div><div class="bridge-to anim" style="--d:740"><b>Processos</b><span>A execução que tira a gestão do improviso.</span></div>
+      <div class="bridge-from anim" style="--d:780"><b>Relacionamento + time</b><span>Como a empresa mantém clientes e distribui responsabilidade.</span></div><div class="bridge-arrow anim" style="--d:830"><span>›</span></div><div class="bridge-to anim" style="--d:880"><b>Pessoas e Liderança</b><span>Rotina, papéis e comando.</span></div>
+      <div class="bridge-from anim" style="--d:920"><b>Parcerias + posição de mercado</b><span>Onde a empresa joga e com quem se fortalece.</span></div><div class="bridge-arrow anim" style="--d:970"><span>›</span></div><div class="bridge-to anim" style="--d:1020"><b>Estratégia</b><span>Escolhas que orientam crescimento.</span></div>
+      <div class="bridge-foot anim" style="--d:1080"><b>Diagnóstico, gargalo e 1 passo:</b> o Canvas simplificado mostra o todo; a restrição escolhe onde agir primeiro.</div>
     </div></section>
 <section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
     <div class="kicker anim" style="--d:40">Resumo prático</div>
