@@ -1,0 +1,655 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jornada Level UP · Ano 1 — Foundation | Roteiro de 12 meses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0c0f17;--ink-2:#11151f;--gold:#c39c4a;--gold-lt:#e7cd8f;--gold-dk:#9c7a35;--paper:#f4efe4;--muted:#9b958a;--muted-2:#6c685f;
+--line:rgba(195,156,74,.22);--card:rgba(255,255,255,.028);--card-br:rgba(231,205,143,.12);--grad-gold:linear-gradient(135deg,#efdca3 0%,#c39c4a 52%,#9c7a35 100%);--ease:cubic-bezier(.16,1,.3,1);}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:var(--ink);color:var(--paper);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{position:fixed;inset:0}.serif{font-family:'Cormorant Garamond',Georgia,serif}
+.deck{position:absolute;inset:0}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:7vh 7vw 9vh;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .55s var(--ease);z-index:1}
+.slide.active{opacity:1;visibility:visible;pointer-events:auto;z-index:2}
+.bg-glow{position:absolute;border-radius:50%;filter:blur(100px);opacity:.5;z-index:0;pointer-events:none}
+.glow-a{width:48vw;height:48vw;background:radial-gradient(circle,rgba(195,156,74,.13),transparent 65%);top:-16vw;right:-12vw}
+.glow-b{width:42vw;height:42vw;background:radial-gradient(circle,rgba(40,60,110,.16),transparent 65%);bottom:-18vw;left:-14vw}
+.vign{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 120% at 50% 30%,transparent 55%,rgba(0,0,0,.45))}
+.slide>*{position:relative;z-index:3}
+.slide>.bg-glow,.slide>.vign,.divider>.colm,.cover>.col-chip{position:absolute;z-index:0}
+.cover>.col-chip{z-index:3}
+.topbar{position:absolute;top:0;left:0;right:0;height:8vh;display:flex;align-items:center;justify-content:space-between;padding:0 7vw;z-index:50}
+.topbar .wm{height:28px;width:auto;opacity:.96}
+.kicker-top{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);display:flex;align-items:center;gap:16px;font-weight:600}
+.kicker-top b{color:var(--gold);font-weight:700}.counter{font-variant-numeric:tabular-nums}
+.progress{position:absolute;top:0;left:0;height:2px;background:var(--grad-gold);width:0;z-index:60;transition:width .55s var(--ease);box-shadow:0 0 12px rgba(195,156,74,.55)}
+.kicker{font-size:clamp(11px,1vw,13px);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px;display:inline-flex;align-items:center;gap:14px}
+.kicker::before{content:"";width:32px;height:1px;background:var(--gold);display:inline-block}
+h1{font-weight:700;line-height:1.0;letter-spacing:-.01em;font-size:clamp(40px,6vw,92px)}
+h2{font-weight:700;line-height:1.05;font-size:clamp(26px,3.8vw,54px)}
+.lead{font-size:clamp(13px,1.4vw,19px);color:var(--muted);max-width:66ch;line-height:1.5;margin-top:14px;font-weight:300}
+.gold{color:var(--gold)}.grad-text{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.anim{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--d,0)*1ms)}
+.slide.active .anim{opacity:1;transform:none}
+.cover{justify-content:center;align-items:flex-start}
+.cover .lockup{height:clamp(64px,10vw,128px);margin-bottom:26px;filter:drop-shadow(0 6px 30px rgba(0,0,0,.5))}
+.cover .rule{width:90px;height:1px;background:var(--grad-gold);margin:4px 0 22px}
+.cover .badge{display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:20px}
+.cover .badge .sep{width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.cover h1{font-size:clamp(42px,7.4vw,108px)}
+.cover .sub{margin-top:24px;font-size:clamp(14px,1.45vw,20px);color:var(--muted);max-width:58ch;line-height:1.55;font-weight:300}
+.cover .col-chip{position:absolute;right:7vw;bottom:13vh;display:flex;align-items:center;gap:18px}
+.cover .col-chip img{height:clamp(46px,6vw,82px);opacity:.92}
+.cover .col-chip .n{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(36px,4.4vw,58px);line-height:.9;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cover .col-chip .l{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:4px}
+.timeline{margin-top:42px;position:relative}
+.tl-track{position:absolute;top:38px;left:6%;right:6%;height:1px;background:rgba(255,255,255,.1)}
+.tl-fill{position:absolute;top:38px;left:6%;height:1px;background:var(--grad-gold);width:0;box-shadow:0 0 12px rgba(195,156,74,.5);transition:width 1.5s var(--ease) .3s}
+.tl-row{display:grid;grid-template-columns:repeat(4,1fr);position:relative}.tl-node{text-align:center;padding:0 12px}
+.tl-dot{width:76px;height:76px;border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;background:var(--ink);border:1px solid var(--line);position:relative;z-index:2;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:22px;color:var(--gold);transition:box-shadow .6s var(--ease),border-color .6s}
+.slide.active .tl-node.anim .tl-dot{box-shadow:0 0 0 6px rgba(195,156,74,.06),0 0 34px rgba(195,156,74,.22);border-color:var(--gold)}
+.tl-node h3{font-family:'Cormorant Garamond',serif;font-size:clamp(19px,2vw,30px);font-weight:700}
+.tl-node .mo{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin:8px 0 6px}
+.tl-node .cad{display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:100px;border:1px solid var(--line);color:var(--gold-lt);margin-bottom:10px}
+.tl-node p{font-size:clamp(11px,1vw,14px);color:var(--muted);line-height:1.4;font-weight:300}
+.flow{display:flex;margin-top:32px;align-items:stretch}.flow .step{flex:1;position:relative;padding:0 18px}
+.flow .step:not(:last-child)::after{content:"";position:absolute;top:25px;right:-6px;width:9px;height:9px;border-top:1px solid var(--line);border-right:1px solid var(--line);transform:rotate(45deg)}
+.flow .step .n{width:50px;height:50px;border-radius:50%;background:rgba(195,156,74,.08);border:1px solid var(--line);color:var(--gold);font-family:'Cormorant Garamond',serif;font-weight:700;font-size:21px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.flow .step h3{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,1.7vw,25px);font-weight:700;margin-bottom:6px}
+.flow .step p{font-size:clamp(11px,.98vw,13.5px);color:var(--muted);line-height:1.4;font-weight:300}
+.cadband{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.cadcard{display:flex;gap:18px;align-items:center;padding:20px 24px;border-radius:14px;background:var(--card);border:1px solid var(--card-br)}
+.cadcard .big{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(28px,3.2vw,44px);color:var(--gold);line-height:1;white-space:nowrap}
+.cadcard .t .h{font-weight:600;font-size:clamp(14px,1.35vw,18px);margin-bottom:4px}.cadcard .t .s{font-size:clamp(11px,1vw,14px);color:var(--muted);font-weight:300;line-height:1.4}
+.cards{display:grid;gap:18px;margin-top:34px;grid-template-columns:repeat(3,1fr)}
+.card{background:var(--card);border:1px solid var(--card-br);border-radius:14px;padding:24px 22px;position:relative;overflow:hidden;transition:transform .45s var(--ease),border-color .45s,background .45s}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease) .25s}
+.slide.active .card.anim::before{transform:scaleX(1)}.card:hover{transform:translateY(-6px);border-color:var(--line);background:rgba(195,156,74,.05)}
+.card .ico{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(195,156,74,.1);border:1px solid var(--line);color:var(--gold);font-family:'Cormorant Garamond',serif;font-weight:700;font-size:21px;margin-bottom:14px}
+.card .meta{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,1.9vw,28px);font-weight:700;margin-bottom:8px}
+.card p{font-size:clamp(12px,1.02vw,14.5px);color:var(--muted);line-height:1.5;font-weight:300}
+.divider{justify-content:center}
+.divider .qnum{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(140px,28vw,400px);line-height:.78;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent;position:absolute;right:5vw;top:50%;transform:translateY(-50%);opacity:.12;z-index:0}
+.divider .colm{position:absolute;left:7vw;top:50%;transform:translateY(-50%);height:30vh;opacity:.1;z-index:0}
+.divider .q-kicker{color:var(--gold);font-weight:600;letter-spacing:.3em;text-transform:uppercase;font-size:clamp(12px,1.2vw,15px);margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.divider .q-kicker .ln{width:48px;height:1px;background:var(--gold)}.divider h1{font-size:clamp(56px,10vw,158px)}
+.divider .cadpill{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:9px 18px;border-radius:100px;border:1px solid var(--line);background:rgba(195,156,74,.05);font-size:clamp(12px,1.15vw,15px);font-weight:600;color:var(--gold-lt);letter-spacing:.04em}
+.divider .cadpill .dt{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 9px var(--gold)}
+.divider .desc{margin-top:20px;font-size:clamp(15px,1.6vw,22px);color:var(--muted);max-width:52ch;line-height:1.55;font-weight:300}
+.thead-line{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.cadtag{display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:100px;border:1px solid var(--line);background:rgba(195,156,74,.05);font-size:12px;font-weight:700;color:var(--gold-lt);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.cadtag .dt{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+.wk{background:var(--card);border:1px solid var(--card-br);border-radius:13px;padding:22px 20px}
+.wk .tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;display:inline-block;padding:5px 11px;background:rgba(195,156,74,.08);border:1px solid var(--line);border-radius:100px}
+.wk h3{font-family:'Cormorant Garamond',serif;font-size:clamp(19px,1.9vw,27px);font-weight:700;margin-bottom:8px}
+.wk p{font-size:clamp(11px,.98vw,14px);color:var(--muted);line-height:1.4;font-weight:300}
+.mtable{width:100%;border-collapse:collapse;margin-top:22px}
+.mtable th{text-align:left;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;padding:0 18px 11px 0;border-bottom:1px solid var(--line)}
+.mtable td{padding:11px 18px 11px 0;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top;line-height:1.3}
+.mtable tr:last-child td{border-bottom:none}
+.mtable .when{color:var(--gold-lt);font-weight:600;white-space:nowrap;font-size:clamp(12px,1.05vw,15px)}
+.mtable .foco{color:var(--paper);font-weight:500;font-size:clamp(11.5px,1vw,14px)}
+.mtable .entrega{color:#cabfa9;font-weight:300;font-size:clamp(11.5px,1vw,14px)}
+.mtable .ind{color:var(--muted);font-weight:300;font-size:clamp(11px,.96vw,13.5px)}
+.mtable tbody tr{transition:background .3s}.mtable tbody tr:hover{background:rgba(195,156,74,.035)}
+.mapa{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.mapa .col{background:var(--card);border:1px solid var(--card-br);border-radius:14px;padding:22px 20px;display:flex;flex-direction:column}
+.mapa .col h3{font-size:clamp(20px,2vw,28px);font-weight:700;line-height:1}
+.mapa .col .ph-mo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);font-weight:600;margin:6px 0 10px}
+.mapa .col .cad{display:inline-block;align-self:flex-start;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:100px;border:1px solid var(--line);color:var(--gold-lt);margin-bottom:14px}
+.mapa .etapas{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.mapa .etapas li{font-size:clamp(11px,1vw,13.5px);color:var(--muted);padding-left:15px;position:relative;line-height:1.3;font-weight:300}
+.mapa .etapas li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.65}
+.mapa .ganho{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-size:clamp(11.5px,1vw,14px);color:var(--gold-lt);font-weight:600;line-height:1.3}
+.mapa-foot{margin-top:18px;font-size:clamp(12px,1.1vw,15px);color:var(--muted);text-align:center;font-weight:300}
+.grid8{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+.acard{background:var(--card);border:1px solid var(--card-br);border-radius:12px;padding:18px 18px;transition:border-color .4s,background .4s}
+.acard:hover{border-color:var(--line);background:rgba(195,156,74,.04)}
+.acard h3{font-size:clamp(17px,1.6vw,22px);font-weight:700;margin-bottom:6px;line-height:1.05}
+.acard p{font-size:clamp(11px,.98vw,13px);color:var(--muted);line-height:1.4;font-weight:300}
+.ganho-band{margin-top:20px;display:flex;gap:18px;align-items:center;padding:18px 24px;border-left:2px solid var(--gold);background:rgba(195,156,74,.04);border-radius:0 12px 12px 0;flex-wrap:wrap}
+.ganho-band .q{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,1.8vw,26px);color:var(--gold-lt);font-style:italic;white-space:nowrap}
+.ganho-band p{font-size:clamp(12px,1.1vw,15px);color:var(--muted);line-height:1.45;font-weight:300;flex:1;min-width:300px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+.panel{background:var(--card);border:1px solid var(--card-br);border-radius:14px;padding:26px 24px}
+.panel .pt{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:16px}
+.panel ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.panel li{font-size:clamp(13px,1.15vw,16px);color:#cabfa9;line-height:1.45;padding-left:18px;position:relative;font-weight:300}
+.panel li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.entrega-band{margin-top:18px;display:flex;gap:18px;align-items:center;padding:18px 24px;border:1px solid var(--line);background:rgba(195,156,74,.05);border-radius:14px;flex-wrap:wrap}
+.entrega-band .lbl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;white-space:nowrap}
+.entrega-band p{font-size:clamp(13px,1.15vw,16px);color:var(--paper);font-weight:400;line-height:1.4;flex:1;min-width:300px}
+.outcome{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
+.oc{padding:26px 24px;border-radius:14px;background:var(--card);border:1px solid var(--card-br);position:relative;overflow:hidden}
+.oc .big{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(22px,2vw,30px);color:var(--gold);margin-bottom:10px}
+.oc p{font-size:clamp(12px,1.05vw,15px);color:#cabfa9;line-height:1.45;font-weight:300}
+.oc .num{position:absolute;right:16px;top:0;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:68px;opacity:.06}
+.elevate{margin-top:30px;display:flex;align-items:center;gap:18px;padding:18px 26px;border-left:2px solid var(--gold);background:rgba(195,156,74,.04);border-radius:0 12px 12px 0;max-width:74ch}
+.elevate img{height:32px;opacity:.85}.elevate p{color:var(--muted);font-size:clamp(12.5px,1.1vw,15.5px);line-height:1.5;font-weight:300}.elevate b{color:var(--gold)}
+.concept-hero{max-width:1050px}.concept-hero h1{font-size:clamp(46px,7vw,108px);max-width:11ch}
+.concept-formula{display:flex;align-items:center;gap:18px;margin-top:36px;flex-wrap:wrap}
+.formula-card{min-width:220px;padding:22px 24px;border:1px solid var(--card-br);background:var(--card);border-radius:14px}
+.formula-card .label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:9px}
+.formula-card h3{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.8vw,42px);line-height:1;font-weight:700}
+.formula-plus{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,60px);color:var(--gold);line-height:1}
+.formula-result{flex:1;min-width:300px;padding:22px 26px;border-left:2px solid var(--gold);background:rgba(195,156,74,.045);border-radius:0 14px 14px 0;color:#cabfa9;font-size:clamp(13px,1.2vw,17px);line-height:1.45;font-weight:300}
+.canvas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px;max-width:980px}
+.canvas-block{min-height:104px;border:1px solid var(--card-br);background:rgba(255,255,255,.026);border-radius:12px;padding:16px 17px;position:relative;overflow:hidden}
+.canvas-block::before{content:attr(data-n);position:absolute;right:13px;top:8px;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:42px;color:rgba(195,156,74,.08)}
+.canvas-block b{display:block;color:var(--gold-lt);font-size:clamp(13px,1.08vw,15.5px);margin-bottom:7px}
+.canvas-block span{display:block;color:var(--muted);font-size:clamp(11px,.96vw,13.5px);line-height:1.35;font-weight:300}
+.case-note{margin-top:20px;max-width:980px;padding:16px 20px;border-left:2px solid var(--gold);background:rgba(195,156,74,.04);border-radius:0 12px 12px 0;color:var(--muted);font-size:clamp(12px,1.05vw,15px);line-height:1.45;font-weight:300}
+.case-note b{color:var(--gold-lt);font-weight:600}
+.toc-wrap{display:grid;grid-template-columns:minmax(280px,.9fr) 1.1fr;gap:28px;align-items:center;margin-top:30px}
+.weak-link{position:relative;min-height:270px;border:1px solid var(--card-br);background:linear-gradient(135deg,rgba(255,255,255,.035),rgba(195,156,74,.035));border-radius:16px;padding:28px;overflow:hidden}
+.weak-link::before{content:"";position:absolute;inset:auto -20% 38% -20%;height:34px;border-top:1px solid rgba(231,205,143,.25);border-bottom:1px solid rgba(231,205,143,.25);transform:rotate(-9deg)}
+.chain-row{position:absolute;left:22px;right:22px;top:48%;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;transform:translateY(-50%) rotate(-9deg)}
+.chain-link{height:54px;border:2px solid rgba(231,205,143,.28);border-radius:40px;background:rgba(12,15,23,.75)}
+.chain-link.weak{border-color:var(--gold);box-shadow:0 0 28px rgba(195,156,74,.45);background:rgba(195,156,74,.09)}
+.weak-link .tag{position:absolute;left:28px;bottom:28px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.weak-link .line{position:absolute;right:28px;bottom:25px;max-width:210px;color:#cabfa9;font-size:clamp(13px,1.1vw,16px);line-height:1.35;font-weight:300}
+.toc-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.toc-step{border:1px solid var(--card-br);background:var(--card);border-radius:12px;padding:18px 16px;min-height:154px}
+.toc-step .n{font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1;color:var(--gold);font-weight:700;margin-bottom:12px}
+.toc-step b{display:block;color:var(--paper);font-size:clamp(13px,1.08vw,16px);margin-bottom:7px}
+.toc-step span{display:block;color:var(--muted);font-size:clamp(11px,.95vw,13.5px);line-height:1.35;font-weight:300}
+.lens-grid{display:grid;grid-template-columns:1fr .34fr 1fr;gap:18px;align-items:stretch;margin-top:34px}
+.lens-card{border:1px solid var(--card-br);background:var(--card);border-radius:14px;padding:26px 24px}
+.lens-card .pt{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
+.lens-card h3{font-family:'Cormorant Garamond',serif;font-size:clamp(27px,2.8vw,44px);line-height:1;font-weight:700;margin-bottom:14px}
+.lens-card p{color:var(--muted);font-size:clamp(12px,1.05vw,15px);line-height:1.45;font-weight:300}
+.lens-plus{display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:clamp(54px,7vw,110px);color:var(--gold);opacity:.9}
+.synthesis{margin-top:20px;padding:20px 24px;border-left:2px solid var(--gold);background:rgba(195,156,74,.045);border-radius:0 14px 14px 0;color:#cabfa9;font-size:clamp(14px,1.22vw,18px);line-height:1.45;font-weight:300}
+.bridge-map{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px;max-width:1040px}
+.bridge-row{display:grid;grid-template-columns:1.05fr .95fr;gap:14px;align-items:center;border:1px solid var(--card-br);background:var(--card);border-radius:12px;padding:15px 18px}
+.bridge-row .from{color:var(--muted);font-size:clamp(11.5px,.98vw,13.5px);line-height:1.35;font-weight:300}
+.bridge-row .to{color:var(--gold-lt);font-weight:700;font-size:clamp(13px,1.08vw,15.5px);line-height:1.25}
+.method-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+.move{position:relative;border:1px solid var(--card-br);background:var(--card);border-radius:14px;padding:24px 22px;min-height:210px;overflow:hidden}
+.move::before{content:attr(data-n);position:absolute;right:16px;top:4px;font-family:'Cormorant Garamond',serif;font-size:78px;font-weight:700;color:rgba(195,156,74,.07);line-height:1}
+.move .concept{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
+.move h3{font-family:'Cormorant Garamond',serif;font-size:clamp(23px,2.1vw,34px);line-height:1.05;font-weight:700;margin-bottom:10px}
+.move p{color:var(--muted);font-size:clamp(12px,1.02vw,14.5px);line-height:1.42;font-weight:300}
+.quote-band{margin-top:24px;display:flex;align-items:flex-end;justify-content:space-between;gap:22px;border-left:2px solid var(--gold);background:rgba(195,156,74,.045);border-radius:0 14px 14px 0;padding:20px 24px}
+.quote-band .quote{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.4vw,38px);line-height:1.1;color:var(--gold-lt);font-weight:600;max-width:860px}
+.quote-band .source{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);font-weight:700;text-align:right;line-height:1.35}
+/* ROADMAP / ESTRADA */
+.road-slide{justify-content:flex-start;padding:8vh 7vw 3.5vh}
+.road-slide h2{font-size:clamp(24px,3.2vw,46px)}
+.road-slide .thead-line{margin-bottom:.5vh}
+.roadmap{position:relative;width:100%;height:72vh;margin-top:10px}
+.road-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.road-svg path{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.road-base{stroke:rgba(0,0,0,.55);stroke-width:34}
+.road-line{stroke-width:26;opacity:.30}
+.road-edge{stroke:var(--gold);stroke-width:28;opacity:.18}
+.road-dash{stroke:var(--gold-lt);stroke-width:2.4;stroke-dasharray:1.3 6;opacity:.85;
+  animation:roaddash 30s linear infinite}
+@keyframes roaddash{to{stroke-dashoffset:-100}}
+.slide.active .road-edge,.slide.active .road-line,.slide.active .road-base{
+  stroke-dasharray:1;stroke-dashoffset:1;animation:roaddraw 1.7s var(--ease) .2s forwards}
+@keyframes roaddraw{to{stroke-dashoffset:0}}
+.stop{position:absolute;transform:translate(-50%,-50%);z-index:4}
+.stop-disc{width:clamp(42px,3.4vw,56px);height:clamp(42px,3.4vw,56px);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:clamp(18px,1.6vw,25px);color:#1a1300;background:var(--grad-gold);border:3px solid var(--ink);
+  box-shadow:0 0 0 1px var(--line),0 6px 22px rgba(0,0,0,.55),0 0 28px rgba(195,156,74,.35);position:relative;z-index:3;margin:0 auto}
+.stop-card{position:absolute;left:50%;transform:translateX(-50%);width:clamp(146px,13vw,198px);
+  background:rgba(14,18,28,.94);border:1px solid var(--card-br);border-radius:12px;padding:11px 15px;
+  backdrop-filter:blur(5px);box-shadow:0 14px 36px rgba(0,0,0,.5)}
+.stop-card::after{content:"";position:absolute;left:50%;width:9px;height:9px;background:rgba(14,18,28,.94);
+  border:1px solid var(--card-br);transform:translateX(-50%) rotate(45deg)}
+.stop.card-top .stop-card{bottom:calc(50% + 36px)}
+.stop.card-top .stop-card::after{bottom:-5px;border-top:none;border-left:none}
+.stop.card-bot .stop-card{top:calc(50% + 36px)}
+.stop.card-bot .stop-card::after{top:-5px;border-bottom:none;border-right:none}
+.stop-card .sw{font-size:clamp(12px,1.05vw,14.5px);font-weight:700;color:var(--gold-lt);letter-spacing:.02em;margin-bottom:5px;line-height:1.15}
+.stop-card .sf{font-size:clamp(11px,.96vw,13.5px);color:var(--paper);font-weight:500;line-height:1.3;margin-bottom:6px}
+.stop-card .sg{font-size:clamp(10.5px,.9vw,12.5px);color:var(--muted);font-weight:300;line-height:1.3;padding-top:6px;border-top:1px solid rgba(195,156,74,.14)}
+/* mobile vertical road */
+.road-mobile{display:none;list-style:none;position:relative;padding:6px 0 6px 4px;margin-top:14px}
+.road-mobile::before{content:"";position:absolute;left:22px;top:14px;bottom:14px;width:3px;border-radius:3px;
+  background:linear-gradient(180deg,var(--gold-lt),var(--gold-dk));opacity:.45}
+.rm-item{position:relative;display:flex;gap:15px;align-items:flex-start;padding:8px 0}
+.rm-disc{flex:none;width:38px;height:38px;border-radius:50%;background:var(--grad-gold);color:#1a1300;
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;
+  border:3px solid var(--ink);box-shadow:0 0 0 1px var(--line),0 0 16px rgba(195,156,74,.3);z-index:2}
+.rm-card{flex:1;background:rgba(255,255,255,.028);border:1px solid var(--card-br);border-radius:11px;padding:11px 14px}
+.rm-card .sw{font-size:14px;font-weight:700;color:var(--gold-lt);margin-bottom:4px;line-height:1.15}
+.rm-card .sf{font-size:13px;color:var(--paper);font-weight:500;line-height:1.3;margin-bottom:5px}
+.rm-card .sg{font-size:12px;color:var(--muted);font-weight:300;line-height:1.3;padding-top:5px;border-top:1px solid rgba(195,156,74,.14)}
+.nav-dots{position:absolute;bottom:3vh;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:50;max-width:80vw;flex-wrap:wrap;justify-content:center}
+.nav-dots button{width:7px;height:7px;border-radius:50%;border:none;background:rgba(255,255,255,.16);cursor:pointer;padding:0;transition:all .35s var(--ease)}
+.nav-dots button.on{background:var(--gold);width:22px;border-radius:4px;box-shadow:0 0 10px rgba(195,156,74,.6)}
+.hint{position:absolute;bottom:2.8vh;right:7vw;font-size:11px;color:var(--muted-2);letter-spacing:.1em;z-index:50;display:flex;align-items:center;gap:8px}
+.hint kbd{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:3px 7px;font-family:inherit;font-size:11px}
+.edge{position:absolute;top:0;bottom:0;width:12vw;z-index:40;cursor:pointer}.edge.l{left:0}.edge.r{right:0}
+@media(max-width:980px){
+.slide{padding:10vh 6vw 15vh;justify-content:flex-start;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.slide.cover,.slide.divider{justify-content:center}
+.cards,.mapa,.grid8,.weeks,.outcome,.canvas-grid,.bridge-map,.method-flow{grid-template-columns:repeat(2,1fr)}.twocol,.cadband,.toc-wrap,.lens-grid{grid-template-columns:1fr}
+.tl-row{grid-template-columns:repeat(2,1fr);gap:22px 14px}.tl-track,.tl-fill{display:none}.flow{flex-direction:column;gap:12px}.flow .step:not(:last-child)::after{display:none}
+.cover .col-chip{display:none}.kicker-top .lbl{display:none}.mtable .ind{display:none}
+.cover .lockup{height:auto;width:min(82%,340px)}
+.toc-steps{grid-template-columns:repeat(2,1fr)}.lens-plus{display:none}.formula-result{min-width:100%}.concept-hero h1{max-width:100%}
+/* roadmap → vertical no mobile */
+.road-slide{padding:10vh 6vw 15vh}
+.roadmap{height:auto !important;margin-top:0}
+.road-svg,.stop{display:none}
+.road-mobile{display:block}}
+@media(max-width:560px){
+.topbar{height:74px;padding:18px 6vw 10px;align-items:flex-start;background:linear-gradient(180deg,rgba(12,15,23,.96),rgba(12,15,23,.72) 72%,transparent)}
+.topbar .wm{height:22px}.kicker-top{font-size:10px;letter-spacing:.22em}
+.slide{padding-top:96px;padding-bottom:136px}.slide.cover,.slide.divider{justify-content:center}
+.cards,.mapa,.grid8,.weeks,.outcome,.tl-row,.canvas-grid,.toc-steps,.bridge-map,.method-flow{grid-template-columns:1fr}
+.concept-formula{gap:12px}.formula-card{width:100%;min-width:0}.formula-plus{display:none}.weak-link{min-height:240px}.chain-row{left:20px;right:20px;top:36%;grid-template-columns:repeat(5,1fr);gap:5px}.chain-link{height:38px}.weak-link .line{left:28px;right:24px;bottom:56px;max-width:none}.weak-link .tag{bottom:24px}.quote-band{display:block}.quote-band .source{text-align:left;margin-top:16px}.nav-dots,.hint{display:none}
+h1{font-size:clamp(34px,11vw,52px)}.divider h1{font-size:clamp(46px,16vw,84px)}}
+</style></head><body>
+<div class="progress" id="prog"></div>
+<div class="topbar"><img class="wm" src="data:image/png;base64,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" alt="Level UP">
+<div class="kicker-top"><span class="lbl">Jornada · <b>Ano 1 — Foundation</b></span><span class="counter"><b id="cur">01</b> / <span id="tot">24</span></span></div></div>
+<div class="deck" id="deck">
+<section class="slide cover active"><div class="bg-glow glow-a"></div><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <img class="lockup anim" style="--d:60" src="data:image/png;base64,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" alt="Level UP">
+    <div class="rule anim" style="--d:160"></div>
+    <div class="badge anim" style="--d:220"><span class="sep"></span> Jornada do cliente · Ano 1 — Foundation</div>
+    <h1 class="serif anim" style="--d:320">Método <span class="grad-text">ALAVANCA</span></h1>
+    <p class="sub anim" style="--d:460">O roteiro de 12 meses dentro do Level UP — do diagnóstico ao <span class="gold">crescimento com controle</span>, com entrega mensurável a cada encontro.</p>
+    <div class="col-chip anim" style="--d:600"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkCAYAAAD7PHgWAAABaElEQVR4nO2X0W2DMBBAXxEDZASyAd2A/PanbNB2grYTJIzQ/0pNNkgniKUswAjuBh6hH8bC0EAgBoMqnoQAH0JPh+903J0/H7CIgITpUEAOSLMQFucV8AWkfn0a2QPvgAqKhRPzkQN4RjsRAFsgnlCmiRjYBcwrc3WeAuaZPUMUtgQVcPTjQYou1D8OISC43FoU8DKSUJ2Ey4J5CGRc733RoDol8ko8MxnM0NXcxInhJSWwbolngDB9cIf+nKL2Al8o61oAG7QTdpHsi2MK7psCQVNgLrS1GZvNqBYtdBWUY0q00VXQkAKP1v03upnHwGvtWdNDt1Q7gEJPKp3oKxijJw3DD1pwVVuHUjCh2mclPQRnXySLoCuLoCuLoCuLoCuLoCv/TlDgefS6RXCNHmAPeJDtO24ZBNUfLOUq0sRQezBHZ/aNgbM6ZJFI4INyCxiUy0vHqmJhXR9q973w0WaO6IzetAV+AZRZO5itj/+MAAAAAElFTkSuQmCC" alt=""><div><div class="n">12</div><div class="l">Meses · Foundation</div></div></div></section>
+<section class="slide"><div class="bg-glow glow-a"></div><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Base conceitual do método</div>
+    <div class="concept-hero">
+      <h1 class="serif anim" style="--d:120">Mapa + <span class="grad-text">gargalo</span></h1>
+      <p class="lead anim" style="--d:220">Toda boa leitura de negócio responde duas perguntas: como a empresa funciona por inteiro e onde está o ponto que mais trava o resultado hoje.</p>
+      <div class="concept-formula">
+        <div class="formula-card anim" style="--d:340"><div class="label">O mapa</div><h3>Business Model Canvas</h3></div>
+        <div class="formula-plus anim" style="--d:430">+</div>
+        <div class="formula-card anim" style="--d:520"><div class="label">O foco</div><h3>Teoria das Restrições</h3></div>
+        <div class="formula-result anim" style="--d:640">O Canvas mostra o negócio inteiro em uma página. A Teoria das Restrições mostra o elo mais fraco desse mapa. Juntos, eles dizem onde agir primeiro.</div>
+      </div>
+    </div></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Parte 1 · Business Model Canvas</div>
+    <h2 class="serif anim" style="--d:120">Enxergar como o negócio <span class="gold">cria, entrega e captura valor</span></h2>
+    <p class="lead anim" style="--d:200">O Canvas transforma o modelo em uma página discutível. Quando tudo fica visível, aparecem os pilares fortes, as fragilidades e as dependências.</p>
+    <div class="canvas-grid">
+      <div class="canvas-block anim" style="--d:300" data-n="1"><b>Segmentos de clientes</b><span>Para quem criamos valor?</span></div>
+      <div class="canvas-block anim" style="--d:360" data-n="2"><b>Proposta de valor</b><span>Que problema resolvemos?</span></div>
+      <div class="canvas-block anim" style="--d:420" data-n="3"><b>Canais</b><span>Como entregamos e comunicamos?</span></div>
+      <div class="canvas-block anim" style="--d:480" data-n="4"><b>Relacionamento</b><span>Como conquistamos e mantemos?</span></div>
+      <div class="canvas-block anim" style="--d:540" data-n="5"><b>Fontes de receita</b><span>De onde vem o dinheiro?</span></div>
+      <div class="canvas-block anim" style="--d:600" data-n="6"><b>Recursos-chave</b><span>O que precisa existir?</span></div>
+      <div class="canvas-block anim" style="--d:660" data-n="7"><b>Atividades-chave</b><span>O que precisa ser bem feito?</span></div>
+      <div class="canvas-block anim" style="--d:720" data-n="8"><b>Parcerias-chave</b><span>Quem ajuda o modelo a funcionar?</span></div>
+      <div class="canvas-block anim" style="--d:780" data-n="9"><b>Estrutura de custos</b><span>Quais custos sustentam o modelo?</span></div>
+    </div>
+    <div class="case-note anim" style="--d:880"><b>Exemplo · Netflix.</b> Proposta de valor clara, receita recorrente e catálogo como recurso-chave explicam a força do caixa antes de qualquer ação.</div></section>
+<section class="slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Parte 2 · Teoria das Restrições</div>
+    <h2 class="serif anim" style="--d:120">Saber exatamente <span class="gold">onde agir</span></h2>
+    <p class="lead anim" style="--d:200">Todo sistema é limitado por um ponto de cada vez. Reforçar elos fortes gera movimento, mas não aumenta a força da corrente.</p>
+    <div class="toc-wrap">
+      <div class="weak-link anim" style="--d:300"><div class="chain-row"><div class="chain-link"></div><div class="chain-link"></div><div class="chain-link weak"></div><div class="chain-link"></div><div class="chain-link"></div></div><div class="tag">Imagem-chave</div><div class="line">A empresa rompe no elo mais fraco. É nele que o resultado do todo está preso.</div></div>
+      <div class="toc-steps">
+        <div class="toc-step anim" style="--d:390"><div class="n">1</div><b>Identificar</b><span>Achar o gargalo que mais limita o resultado.</span></div>
+        <div class="toc-step anim" style="--d:470"><div class="n">2</div><b>Explorar</b><span>Tirar o máximo do gargalo com o que já existe.</span></div>
+        <div class="toc-step anim" style="--d:550"><div class="n">3</div><b>Subordinar</b><span>Fazer o resto trabalhar a favor desse ponto.</span></div>
+        <div class="toc-step anim" style="--d:630"><div class="n">4</div><b>Elevar</b><span>Só então investir para ampliar a capacidade.</span></div>
+        <div class="toc-step anim" style="--d:710"><div class="n">5</div><b>Repetir</b><span>Resolvido um gargalo, outro aparece.</span></div>
+      </div>
+    </div>
+    <div class="case-note anim" style="--d:820"><b>Exemplo · A Meta.</b> A fábrica destrava quando o gestor para de acelerar tudo e passa a proteger a máquina que limitava a produção.</div></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Parte 3 · A combinação</div>
+    <h2 class="serif anim" style="--d:120">O mapa mais o <span class="gold">raio-x</span></h2>
+    <p class="lead anim" style="--d:200">Sozinhas, as ferramentas têm ponto cego. Juntas, uma mostra o modelo inteiro e a outra obriga foco no ponto que realmente limita o avanço.</p>
+    <div class="lens-grid">
+      <div class="lens-card anim" style="--d:320"><div class="pt">Canvas</div><h3>Vê o todo</h3><p>Evita escolher um gargalo sem entender o modelo. Mostra clientes, valor, receita, custos, recursos e execução na mesma leitura.</p></div>
+      <div class="lens-plus anim" style="--d:430">+</div>
+      <div class="lens-card anim" style="--d:540"><div class="pt">Restrições</div><h3>Escolhe o alvo</h3><p>Evita tentar melhorar tudo ao mesmo tempo. Aponta o ponto que mais trava o resultado agora.</p></div>
+    </div>
+    <div class="synthesis anim" style="--d:660">Use o Canvas para enxergar o modelo inteiro. Use a Teoria das Restrições para encontrar, dentro desse modelo, o elo mais fraco. Aja nele primeiro.</div>
+    <div class="case-note anim" style="--d:760"><b>Exemplo · Pizzaria cheia que não lucra.</b> O Canvas mostra clientes, demanda e receita. A restrição revela que o forno único limita quantas pizzas saem por noite.</div></section>
+<section class="slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Parte 4 · Como vira ALAVANCA</div>
+    <h2 class="serif anim" style="--d:120">As 6 áreas são uma leitura rápida do <span class="gold">modelo de negócio</span></h2>
+    <p class="lead anim" style="--d:200">No método, lemos o negócio como um Canvas simplificado. Depois usamos a lógica das restrições para escolher a área que mais trava o caixa agora.</p>
+    <div class="bridge-map">
+      <div class="bridge-row anim" style="--d:300"><div class="from">Fontes de receita + estrutura de custos</div><div class="to">Caixa e Margem</div></div>
+      <div class="bridge-row anim" style="--d:380"><div class="from">Segmentos, proposta e canais</div><div class="to">Vendas, Marketing e Cliente</div></div>
+      <div class="bridge-row anim" style="--d:460"><div class="from">Atividades e recursos-chave</div><div class="to">Processos</div></div>
+      <div class="bridge-row anim" style="--d:540"><div class="from">Relacionamento, rotina e time</div><div class="to">Pessoas e Liderança</div></div>
+      <div class="bridge-row anim" style="--d:620"><div class="from">Parcerias e posição no mercado</div><div class="to">Estratégia</div></div>
+      <div class="bridge-row anim" style="--d:700"><div class="from">Diagnóstico, gargalo e 1 passo</div><div class="to">Ver o todo · agir no ponto</div></div>
+    </div></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Resumo prático</div>
+    <h2 class="serif anim" style="--d:120">Aplicar o método em <span class="gold">4 movimentos</span></h2>
+    <div class="method-flow">
+      <div class="move anim" style="--d:260" data-n="1"><div class="concept">Canvas</div><h3>Ver o todo</h3><p>Ler as 6 áreas do negócio antes de escolher qualquer ação.</p></div>
+      <div class="move anim" style="--d:360" data-n="2"><div class="concept">Restrição</div><h3>Achar o elo fraco</h3><p>Definir qual área mais trava o caixa e o resultado agora.</p></div>
+      <div class="move anim" style="--d:460" data-n="3"><div class="concept">Explorar / subordinar</div><h3>Agir no ponto</h3><p>Uma ação focada no gargalo, com o resto da empresa alinhado.</p></div>
+      <div class="move anim" style="--d:560" data-n="4"><div class="concept">Novo gargalo</div><h3>Repetir</h3><p>A cada fase, um novo ponto de alavanca para destravar.</p></div>
+    </div>
+    <div class="quote-band anim" style="--d:700"><div class="quote">“Ver o negócio inteiro e escolher onde agir. Esse é o começo de toda boa gestão.”</div><div class="source">Base conceitual · Business Model Canvas + Teoria das Restrições</div></div></section>
+<section class="slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Visão geral da jornada</div>
+    <h2 class="serif anim" style="--d:120">Sua evolução, <span class="gold">nível por nível</span></h2>
+    <p class="lead anim" style="--d:200">Quatro trimestres, uma evolução contínua. Você sempre sabe onde está, o que vem a seguir e o que será entregue.</p>
+    <div class="timeline"><div class="tl-track"></div><div class="tl-fill" id="tlfill"></div><div class="tl-row">
+      <div class="tl-node anim" style="--d:320"><div class="tl-dot">I</div><h3>Rampagem</h3><div class="mo">Meses 1–3</div><div class="cad">Semanal</div><p>Clareza + 1º dinheiro novo</p></div>
+      <div class="tl-node anim" style="--d:460"><div class="tl-dot">II</div><h3>Liderança</h3><div class="mo">Meses 4–6</div><div class="cad">Quinzenal</div><p>Gestão e time funcionando</p></div>
+      <div class="tl-node anim" style="--d:600"><div class="tl-dot">III</div><h3>Consistência</h3><div class="mo">Meses 7–9</div><div class="cad">Quinzenal</div><p>Processos e previsibilidade</p></div>
+      <div class="tl-node anim" style="--d:740"><div class="tl-dot">IV</div><h3>Tração</h3><div class="mo">Meses 10–12</div><div class="cad">Quinzenal</div><p>Margem, caixa e expansão</p></div>
+    </div></div></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Mapa da jornada do cliente</div>
+    <h2 class="serif anim" style="--d:120">A experiência <span class="gold">ao longo do ano</span></h2>
+    <p class="lead anim" style="--d:200">Cada fase tem suas etapas, sua cadência e um ganho claro — o cliente sempre sabe onde está e o que já conquistou.</p>
+    <div class="mapa"><div class="col anim" style="--d:300"><h3 class="serif">Rampagem</h3><div class="ph-mo">Meses 1–3</div><div class="cad">Semanal</div>
+        <ul class="etapas"><li>S1 · Diagnóstico</li><li>S2–6 · Direção nas áreas</li><li>S7 · Consolidação</li><li>S8–12 · Plano de Rampagem</li></ul><div class="ganho">Clareza + 1º dinheiro novo</div></div><div class="col anim" style="--d:410"><h3 class="serif">Liderança</h3><div class="ph-mo">Meses 4–6</div><div class="cad">Quinzenal</div>
+        <ul class="etapas"><li>E1 · Abertura da fase</li><li>E2–5 · Instalar liderança</li><li>E5 · Consolidação</li><li>E6 · Plano de Liderança</li></ul><div class="ganho">Menos dependência do sócio</div></div><div class="col anim" style="--d:520"><h3 class="serif">Consistência</h3><div class="ph-mo">Meses 7–9</div><div class="cad">Quinzenal</div>
+        <ul class="etapas"><li>E1 · Abertura da fase</li><li>E2–5 · Construir consistência</li><li>E5 · Consolidação</li><li>E6 · Plano de Consistência</li></ul><div class="ganho">Resultado previsível</div></div><div class="col anim" style="--d:630"><h3 class="serif">Tração</h3><div class="ph-mo">Meses 10–12</div><div class="cad">Quinzenal</div>
+        <ul class="etapas"><li>E1 · Abertura da fase</li><li>E2–5 · Tracionar</li><li>E5 · Consolidação</li><li>E6 · Plano + fechamento</li></ul><div class="ganho">Crescimento com controle</div></div></div>
+    <div class="mapa-foot anim" style="--d:780">Início: <span class="gold">gestão dispersa</span> &nbsp;·&nbsp; Fim: empresa pronta para crescer com controle e avançar ao Ano 2 (Elevate).</div></section>
+<section class="slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">O ritmo da entrega</div>
+    <h2 class="serif anim" style="--d:120">Como cada fase <span class="gold">acontece</span></h2>
+    <p class="lead anim" style="--d:200">Toda fase segue a mesma lógica — e cada encontro entrega um direcionamento acionável e mensurável.</p>
+    <div class="flow">
+      <div class="step anim" style="--d:300"><div class="n">1</div><h3>Visitar</h3><p>Olhamos cada área ponto a ponto.</p></div>
+      <div class="step anim" style="--d:380"><div class="n">2</div><h3>Direcionar</h3><p>Direção prática e ganhos imediatos.</p></div>
+      <div class="step anim" style="--d:460"><div class="n">3</div><h3>Consolidar</h3><p>Revisar ganhos e priorizar dores.</p></div>
+      <div class="step anim" style="--d:540"><div class="n">4</div><h3>Planejar</h3><p>Plano focado nas maiores dores.</p></div>
+      <div class="step anim" style="--d:620"><div class="n">5</div><h3>Executar</h3><p>Implementação com acompanhamento.</p></div>
+    </div>
+    <div class="cadband">
+      <div class="cadcard anim" style="--d:720"><div class="big">Semanal</div><div class="t"><div class="h">Quarter 1 · Rampagem</div><div class="s">Meses 1–3 · <b style="color:var(--gold-lt)">12 encontros semanais</b> — ritmo intenso para gerar clareza e o 1º dinheiro novo.</div></div></div>
+      <div class="cadcard anim" style="--d:820"><div class="big">Quinzenal</div><div class="t"><div class="h">Quarters 2 a 4</div><div class="s">Meses 4–12 · <b style="color:var(--gold-lt)">6 encontros quinzenais por fase</b> — tempo para implantar entre os encontros.</div></div></div>
+    </div></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">O motor do programa · por que ALAVANCA</div>
+    <h2 class="serif anim" style="--d:120">De onde vem o <span class="gold">dinheiro novo</span></h2>
+    <p class="lead anim" style="--d:200">Em todas as fases o foco é gerar resultado financeiro real — por uma destas três alavancas. O cliente precisa sentir o retorno, não só organizar a casa.</p>
+    <div class="cards">
+      <div class="card anim" style="--d:320"><div class="ico">I</div><div class="meta">Alavanca 01</div><h3>Margem</h3><p>Financeiro mais eficiente: preço, mix, custos e leitura de caixa.</p></div>
+      <div class="card anim" style="--d:440"><div class="ico">II</div><div class="meta">Alavanca 02</div><h3>Faturamento</h3><p>Comercial e marketing gerando mais demanda e conversão.</p></div>
+      <div class="card anim" style="--d:560"><div class="ico">III</div><div class="meta">Alavanca 03</div><h3>Pessoas</h3><p>Time engajado e com papéis claros entregando mais resultado.</p></div>
+    </div></section>
+<section class="slide divider"><div class="bg-glow glow-a"></div><div class="vign"></div><img class="colm" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkCAYAAAD7PHgWAAABaElEQVR4nO2X0W2DMBBAXxEDZASyAd2A/PanbNB2grYTJIzQ/0pNNkgniKUswAjuBh6hH8bC0EAgBoMqnoQAH0JPh+903J0/H7CIgITpUEAOSLMQFucV8AWkfn0a2QPvgAqKhRPzkQN4RjsRAFsgnlCmiRjYBcwrc3WeAuaZPUMUtgQVcPTjQYou1D8OISC43FoU8DKSUJ2Ey4J5CGRc733RoDol8ko8MxnM0NXcxInhJSWwbolngDB9cIf+nKL2Al8o61oAG7QTdpHsi2MK7psCQVNgLrS1GZvNqBYtdBWUY0q00VXQkAKP1v03upnHwGvtWdNDt1Q7gEJPKp3oKxijJw3DD1pwVVuHUjCh2mclPQRnXySLoCuLoCuLoCuLoCuLoCv/TlDgefS6RXCNHmAPeJDtO24ZBNUfLOUq0sRQezBHZ/aNgbM6ZJFI4INyCxiUy0vHqmJhXR9q973w0WaO6IzetAV+AZRZO5itj/+MAAAAAElFTkSuQmCC" alt="">
+    <div class="qnum">I</div>
+    <div class="q-kicker anim" style="--d:40"><span class="ln"></span> Quarter 1 · Meses 1–3</div>
+    <h1 class="serif anim" style="--d:140">Rampagem</h1>
+    <div class="cadpill anim" style="--d:240"><span class="dt"></span> Reuniões semanais · 12 encontros</div>
+    <p class="desc anim" style="--d:340">Clareza e primeiros ganhos — incluindo <span class="gold">dinheiro novo já no 2º mês</span>.</p></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter I · Rampagem</div>
+    <div class="thead-line"><h2 class="serif anim" style="--d:120">Rampagem em <span class="gold">12 semanas</span></h2>
+    <span class="cadtag anim" style="--d:180"><span class="dt"></span> Semanal · 12 encontros</span></div>
+    <div class="weeks"><div class="wk anim" style="--d:300"><span class="tag">Semana 1</span><h3>Diagnóstico</h3><p>Entendimento de todas as áreas via questionário.</p></div><div class="wk anim" style="--d:390"><span class="tag">Semanas 2–6</span><h3>Visita ponto a ponto</h3><p>Cada área recebe direcionamento — e o cliente já vê ganhos.</p></div><div class="wk anim" style="--d:480"><span class="tag">Semana 7</span><h3>Consolidação</h3><p>Revisamos os ganhos e priorizamos juntos as maiores dores.</p></div><div class="wk anim" style="--d:570"><span class="tag">Semanas 8–12</span><h3>Plano de Rampagem</h3><p>Execução focada nas dores priorizadas até fechar o trimestre.</p></div></div></section>
+<section class="slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter I · Rampagem · Semana 1</div>
+    <h2 class="serif anim" style="--d:120">Diagnóstico Empresarial</h2>
+    <p class="lead anim" style="--d:200">Antes de agir, entendemos a empresa por inteiro. O questionário cobre oito frentes — o raio-x que orienta toda a Rampagem.</p>
+    <div class="grid8"><div class="acard anim" style="--d:260"><h3 class="serif">Sobre a Empresa</h3><p>Segmento, tempo de mercado, equipe, faturamento e produtos</p></div><div class="acard anim" style="--d:330"><h3 class="serif">Perfil do Cliente</h3><p>ICP, dores que resolve, segmentos e tipo (B2B/B2C)</p></div><div class="acard anim" style="--d:400"><h3 class="serif">Pessoas & Processos</h3><p>Hierarquia, onboarding, ERP/CRM, cultura e indicadores</p></div><div class="acard anim" style="--d:470"><h3 class="serif">Financeiro</h3><p>Metas, margem, DRE/DFC e previsibilidade financeira</p></div><div class="acard anim" style="--d:540"><h3 class="serif">Comercial</h3><p>Canais, leads, conversão, ciclo, ticket e carteira</p></div><div class="acard anim" style="--d:610"><h3 class="serif">Marketing</h3><p>Anúncios, posicionamento e integração com vendas</p></div><div class="acard anim" style="--d:680"><h3 class="serif">Treinamentos</h3><p>Capacitação do time comercial e dos líderes</p></div><div class="acard anim" style="--d:750"><h3 class="serif">Dores & Expectativas</h3><p>Maior desafio e expectativas dentro da Jornada</p></div></div>
+    <div class="ganho-band anim" style="--d:860"><span class="q">“Agora eu enxergo minha empresa.”</span><p>Clareza total do negócio — o cliente sai da Semana 1 sabendo onde estão os pontos cegos. <span style="color:var(--muted-2)">(Questionário completo entregue como anexo à parte.)</span></p></div></section>
+<section class="slide road-slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter I · Rampagem</div>
+    <div class="thead-line"><h2 class="serif anim" style="--d:120">Semana a semana</h2>
+    <span class="cadtag anim" style="--d:180"><span class="dt"></span> Semanal · 12 encontros</span></div>
+    <div class="roadmap"><svg class="road-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <defs><linearGradient id="rgQ1" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#efdca3"/><stop offset="0.55" stop-color="#c39c4a"/><stop offset="1" stop-color="#9c7a35"/>
+      </linearGradient></defs>
+      <path d="M 12.00 32.00 C 23.40 32.00 25.93 32.00 37.33 32.00 C 48.73 32.00 51.27 32.00 62.67 32.00 C 74.07 32.00 76.60 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 76.60 70.00 74.07 70.00 62.67 70.00 C 51.27 70.00 48.73 70.00 37.33 70.00 C 25.93 70.00 23.40 70.00 12.00 70.00" class="road-edge" pathLength="1"/>
+      <path d="M 12.00 32.00 C 23.40 32.00 25.93 32.00 37.33 32.00 C 48.73 32.00 51.27 32.00 62.67 32.00 C 74.07 32.00 76.60 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 76.60 70.00 74.07 70.00 62.67 70.00 C 51.27 70.00 48.73 70.00 37.33 70.00 C 25.93 70.00 23.40 70.00 12.00 70.00" class="road-base" pathLength="1"/>
+      <path d="M 12.00 32.00 C 23.40 32.00 25.93 32.00 37.33 32.00 C 48.73 32.00 51.27 32.00 62.67 32.00 C 74.07 32.00 76.60 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 76.60 70.00 74.07 70.00 62.67 70.00 C 51.27 70.00 48.73 70.00 37.33 70.00 C 25.93 70.00 23.40 70.00 12.00 70.00" class="road-line" stroke="url(#rgQ1)" pathLength="1"/>
+      <path d="M 12.00 32.00 C 23.40 32.00 25.93 32.00 37.33 32.00 C 48.73 32.00 51.27 32.00 62.67 32.00 C 74.07 32.00 76.60 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 76.60 70.00 74.07 70.00 62.67 70.00 C 51.27 70.00 48.73 70.00 37.33 70.00 C 25.93 70.00 23.40 70.00 12.00 70.00" class="road-dash" pathLength="100"/>
+    </svg><div class="stop anim card-top" style="--d:360;left:12.00%;top:32.00%">
+          <div class="stop-disc">1</div>
+          <div class="stop-card"><div class="sw">S1 · Diagnóstico</div><div class="sf">Raio-X completo da empresa</div><div class="sg">Pontos cegos e metas-base mapeados</div></div>
+        </div><div class="stop anim card-top" style="--d:440;left:37.33%;top:32.00%">
+          <div class="stop-disc">2</div>
+          <div class="stop-card"><div class="sw">S2 · Financeiro</div><div class="sf">Margem, caixa, pró-labore e custos</div><div class="sg">Margem de contribuição + meta de ganho</div></div>
+        </div><div class="stop anim card-top" style="--d:520;left:62.67%;top:32.00%">
+          <div class="stop-disc">3</div>
+          <div class="stop-card"><div class="sw">S3 · Cultura</div><div class="sf">Engajamento, papéis e comportamento</div><div class="sg">Nível de engajamento do time</div></div>
+        </div><div class="stop anim card-top" style="--d:600;left:88.00%;top:32.00%">
+          <div class="stop-disc">4</div>
+          <div class="stop-card"><div class="sw">S4 · Processos</div><div class="sf">Gargalos e padronização da entrega</div><div class="sg">Retrabalho identificado e priorizado</div></div>
+        </div><div class="stop anim card-bot" style="--d:680;left:88.00%;top:70.00%">
+          <div class="stop-disc">5</div>
+          <div class="stop-card"><div class="sw">S5 · Marketing</div><div class="sf">Oferta, posicionamento e demanda</div><div class="sg">Plano de aquisição definido</div></div>
+        </div><div class="stop anim card-bot" style="--d:760;left:62.67%;top:70.00%">
+          <div class="stop-disc">6</div>
+          <div class="stop-card"><div class="sw">S6 · Comercial</div><div class="sf">Funil, conversão e rotina de vendas</div><div class="sg">Conversão e ticket mapeados</div></div>
+        </div><div class="stop anim card-bot" style="--d:840;left:37.33%;top:70.00%">
+          <div class="stop-disc">7</div>
+          <div class="stop-card"><div class="sw">S7 · Consolidação</div><div class="sf">Revisar ganhos e priorizar dores</div><div class="sg">Foco de ataque definido (S8–12)</div></div>
+        </div><div class="stop anim card-bot" style="--d:920;left:12.00%;top:70.00%">
+          <div class="stop-disc">8</div>
+          <div class="stop-card"><div class="sw">S8–12 · Plano</div><div class="sf">Execução acompanhada</div><div class="sg">Dores resolvidas + dinheiro novo gerado</div></div>
+        </div><ol class="road-mobile"><li class="rm-item"><span class="rm-disc">1</span>
+        <div class="rm-card"><div class="sw">S1 · Diagnóstico</div><div class="sf">Raio-X completo da empresa</div><div class="sg">Pontos cegos e metas-base mapeados</div></div></li><li class="rm-item"><span class="rm-disc">2</span>
+        <div class="rm-card"><div class="sw">S2 · Financeiro</div><div class="sf">Margem, caixa, pró-labore e custos</div><div class="sg">Margem de contribuição + meta de ganho</div></div></li><li class="rm-item"><span class="rm-disc">3</span>
+        <div class="rm-card"><div class="sw">S3 · Cultura</div><div class="sf">Engajamento, papéis e comportamento</div><div class="sg">Nível de engajamento do time</div></div></li><li class="rm-item"><span class="rm-disc">4</span>
+        <div class="rm-card"><div class="sw">S4 · Processos</div><div class="sf">Gargalos e padronização da entrega</div><div class="sg">Retrabalho identificado e priorizado</div></div></li><li class="rm-item"><span class="rm-disc">5</span>
+        <div class="rm-card"><div class="sw">S5 · Marketing</div><div class="sf">Oferta, posicionamento e demanda</div><div class="sg">Plano de aquisição definido</div></div></li><li class="rm-item"><span class="rm-disc">6</span>
+        <div class="rm-card"><div class="sw">S6 · Comercial</div><div class="sf">Funil, conversão e rotina de vendas</div><div class="sg">Conversão e ticket mapeados</div></div></li><li class="rm-item"><span class="rm-disc">7</span>
+        <div class="rm-card"><div class="sw">S7 · Consolidação</div><div class="sf">Revisar ganhos e priorizar dores</div><div class="sg">Foco de ataque definido (S8–12)</div></div></li><li class="rm-item"><span class="rm-disc">8</span>
+        <div class="rm-card"><div class="sw">S8–12 · Plano</div><div class="sf">Execução acompanhada</div><div class="sg">Dores resolvidas + dinheiro novo gerado</div></div></li></ol></div></section>
+<section class="slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter I · Rampagem</div>
+    <h2 class="serif anim" style="--d:120">Consolidação e Plano</h2>
+    <div class="twocol">
+      <div class="panel anim" style="--d:260"><div class="pt">Semana 7 · Consolidação</div><ul><li>Revisar os ganhos das 6 áreas visitadas</li><li>Identificar a maior dor e o maior potencial</li><li>Definir as prioridades das Semanas 8–12</li></ul></div>
+      <div class="panel anim" style="--d:360"><div class="pt">Semanas 8–12 · Plano de Rampagem</div><ul><li>Plano de ação nas áreas de maior dor</li><li>Implementação real com responsáveis, metas e prazos</li><li>Acompanhamento semanal até fechar os 3 meses</li></ul></div>
+    </div>
+    <div class="entrega-band anim" style="--d:480"><span class="lbl">Entrega do Quarter</span><p>Empresa com clareza, primeiras dores resolvidas e dinheiro novo gerado. Pronta para a Fase 2 — Liderança.</p></div></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter I · Marcos de ganho</div>
+    <h2 class="serif anim" style="--d:120">O que o cliente <span class="gold">sente em cada mês</span></h2>
+    <p class="lead anim" style="--d:200">A Rampagem é desenhada para entregar percepção de ganho cedo — e resultado financeiro já no 2º mês.</p>
+    <div class="cards">
+      <div class="card anim" style="--d:320"><div class="meta">Mês 1</div><h3>Clareza total</h3><p>Diagnóstico completo e direção em todas as áreas. O cliente enxerga a empresa de verdade.</p></div>
+      <div class="card anim" style="--d:440"><div class="meta">Mês 2</div><h3>Primeiro dinheiro novo</h3><p>Resultado tangível — margem melhor, mais faturamento ou time rendendo mais.</p></div>
+      <div class="card anim" style="--d:560"><div class="meta">Mês 3</div><h3>Resultado consolidado</h3><p>Maiores dores atacadas, ganhos somados e plano da Fase 2 pronto.</p></div>
+    </div></section>
+<section class="slide divider"><div class="bg-glow glow-a"></div><div class="vign"></div><img class="colm" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkCAYAAAD7PHgWAAABaElEQVR4nO2X0W2DMBBAXxEDZASyAd2A/PanbNB2grYTJIzQ/0pNNkgniKUswAjuBh6hH8bC0EAgBoMqnoQAH0JPh+903J0/H7CIgITpUEAOSLMQFucV8AWkfn0a2QPvgAqKhRPzkQN4RjsRAFsgnlCmiRjYBcwrc3WeAuaZPUMUtgQVcPTjQYou1D8OISC43FoU8DKSUJ2Ey4J5CGRc733RoDol8ko8MxnM0NXcxInhJSWwbolngDB9cIf+nKL2Al8o61oAG7QTdpHsi2MK7psCQVNgLrS1GZvNqBYtdBWUY0q00VXQkAKP1v03upnHwGvtWdNDt1Q7gEJPKp3oKxijJw3DD1pwVVuHUjCh2mclPQRnXySLoCuLoCuLoCuLoCuLoCv/TlDgefS6RXCNHmAPeJDtO24ZBNUfLOUq0sRQezBHZ/aNgbM6ZJFI4INyCxiUy0vHqmJhXR9q973w0WaO6IzetAV+AZRZO5itj/+MAAAAAElFTkSuQmCC" alt="">
+    <div class="qnum">II</div>
+    <div class="q-kicker anim" style="--d:40"><span class="ln"></span> Quarter 2 · Meses 4–6</div>
+    <h1 class="serif anim" style="--d:140">Liderança</h1>
+    <div class="cadpill anim" style="--d:240"><span class="dt"></span> Reuniões quinzenais · 6 encontros</div>
+    <p class="desc anim" style="--d:340">A empresa passa a funcionar com <span class="gold">menos dependência do sócio</span>.</p></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter II · Liderança</div>
+    <div class="thead-line"><h2 class="serif anim" style="--d:120">Liderança em <span class="gold">6 encontros</span></h2>
+    <span class="cadtag anim" style="--d:180"><span class="dt"></span> Quinzenal · 6 encontros</span></div>
+    <div class="weeks"><div class="wk anim" style="--d:300"><span class="tag">Encontro 1</span><h3>Abertura</h3><p>Mapa de liderança: onde a empresa ainda depende do sócio.</p></div><div class="wk anim" style="--d:390"><span class="tag">Encontros 1–5</span><h3>Visita das áreas</h3><p>Papéis, líderes, cultura, cadência e decisão — ganho a cada encontro.</p></div><div class="wk anim" style="--d:480"><span class="tag">Encontro 5</span><h3>Consolidação</h3><p>Revisamos os ganhos e priorizamos a maior dor de gestão.</p></div><div class="wk anim" style="--d:570"><span class="tag">Encontro 6</span><h3>Plano de Liderança</h3><p>Instalar papéis, rotina e gestão de time até fechar a fase.</p></div></div></section>
+<section class="slide road-slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter II · Liderança</div>
+    <div class="thead-line"><h2 class="serif anim" style="--d:120">Encontro a encontro</h2>
+    <span class="cadtag anim" style="--d:180"><span class="dt"></span> Quinzenal · 6 encontros</span></div>
+    <div class="roadmap"><svg class="road-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <defs><linearGradient id="rgQ2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#efdca3"/><stop offset="0.55" stop-color="#c39c4a"/><stop offset="1" stop-color="#9c7a35"/>
+      </linearGradient></defs>
+      <path d="M 12.00 32.00 C 29.10 32.00 32.90 32.00 50.00 32.00 C 67.10 32.00 70.90 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 70.90 70.00 67.10 70.00 50.00 70.00 C 32.90 70.00 29.10 70.00 12.00 70.00" class="road-edge" pathLength="1"/>
+      <path d="M 12.00 32.00 C 29.10 32.00 32.90 32.00 50.00 32.00 C 67.10 32.00 70.90 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 70.90 70.00 67.10 70.00 50.00 70.00 C 32.90 70.00 29.10 70.00 12.00 70.00" class="road-base" pathLength="1"/>
+      <path d="M 12.00 32.00 C 29.10 32.00 32.90 32.00 50.00 32.00 C 67.10 32.00 70.90 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 70.90 70.00 67.10 70.00 50.00 70.00 C 32.90 70.00 29.10 70.00 12.00 70.00" class="road-line" stroke="url(#rgQ2)" pathLength="1"/>
+      <path d="M 12.00 32.00 C 29.10 32.00 32.90 32.00 50.00 32.00 C 67.10 32.00 70.90 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 70.90 70.00 67.10 70.00 50.00 70.00 C 32.90 70.00 29.10 70.00 12.00 70.00" class="road-dash" pathLength="100"/>
+    </svg><div class="stop anim card-top" style="--d:360;left:12.00%;top:32.00%">
+          <div class="stop-disc">1</div>
+          <div class="stop-card"><div class="sw">E1 · Abertura + Papéis</div><div class="sf">Onde depende do sócio + organograma</div><div class="sg">Papéis e responsáveis definidos</div></div>
+        </div><div class="stop anim card-top" style="--d:440;left:50.00%;top:32.00%">
+          <div class="stop-disc">2</div>
+          <div class="stop-card"><div class="sw">E2 · Líderes</div><div class="sf">Formar gestores e delegar</div><div class="sg">% de decisões fora do sócio</div></div>
+        </div><div class="stop anim card-top" style="--d:520;left:88.00%;top:32.00%">
+          <div class="stop-disc">3</div>
+          <div class="stop-card"><div class="sw">E3 · Cultura</div><div class="sf">Valores, alinhamento e engajamento</div><div class="sg">Aderência aos valores</div></div>
+        </div><div class="stop anim card-bot" style="--d:600;left:88.00%;top:70.00%">
+          <div class="stop-disc">4</div>
+          <div class="stop-card"><div class="sw">E4 · Cadência</div><div class="sf">Rituais e reuniões de gestão</div><div class="sg">Abertura/fechamento de semana em rotina</div></div>
+        </div><div class="stop anim card-bot" style="--d:680;left:50.00%;top:70.00%">
+          <div class="stop-disc">5</div>
+          <div class="stop-card"><div class="sw">E5 · Decisão + Consolidação</div><div class="sf">Alçadas + priorizar maior dor</div><div class="sg">Autonomia de decisão mapeada</div></div>
+        </div><div class="stop anim card-bot" style="--d:760;left:12.00%;top:70.00%">
+          <div class="stop-disc">6</div>
+          <div class="stop-card"><div class="sw">E6 · Plano + Fechamento</div><div class="sf">Instalar gestão até fechar a fase</div><div class="sg">Menos dependência do sócio · entrega da fase</div></div>
+        </div><ol class="road-mobile"><li class="rm-item"><span class="rm-disc">1</span>
+        <div class="rm-card"><div class="sw">E1 · Abertura + Papéis</div><div class="sf">Onde depende do sócio + organograma</div><div class="sg">Papéis e responsáveis definidos</div></div></li><li class="rm-item"><span class="rm-disc">2</span>
+        <div class="rm-card"><div class="sw">E2 · Líderes</div><div class="sf">Formar gestores e delegar</div><div class="sg">% de decisões fora do sócio</div></div></li><li class="rm-item"><span class="rm-disc">3</span>
+        <div class="rm-card"><div class="sw">E3 · Cultura</div><div class="sf">Valores, alinhamento e engajamento</div><div class="sg">Aderência aos valores</div></div></li><li class="rm-item"><span class="rm-disc">4</span>
+        <div class="rm-card"><div class="sw">E4 · Cadência</div><div class="sf">Rituais e reuniões de gestão</div><div class="sg">Abertura/fechamento de semana em rotina</div></div></li><li class="rm-item"><span class="rm-disc">5</span>
+        <div class="rm-card"><div class="sw">E5 · Decisão + Consolidação</div><div class="sf">Alçadas + priorizar maior dor</div><div class="sg">Autonomia de decisão mapeada</div></div></li><li class="rm-item"><span class="rm-disc">6</span>
+        <div class="rm-card"><div class="sw">E6 · Plano + Fechamento</div><div class="sf">Instalar gestão até fechar a fase</div><div class="sg">Menos dependência do sócio · entrega da fase</div></div></li></ol></div></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter II · Liderança</div>
+    <h2 class="serif anim" style="--d:120">Consolidação e Plano</h2>
+    <div class="twocol">
+      <div class="panel anim" style="--d:260"><div class="pt">Encontro 5 · Consolidação</div><ul><li>Revisar os ganhos das 5 áreas de liderança</li><li>Priorizar a maior dor de gestão</li><li>Definir o foco do plano (Encontro 6)</li></ul></div>
+      <div class="panel anim" style="--d:360"><div class="pt">Encontro 6 · Plano de Liderança</div><ul><li>Implantar papéis e responsabilidades</li><li>Instalar a cadência de gestão e reuniões</li><li>Desenvolver líderes e distribuir decisão</li></ul></div>
+    </div>
+    <div class="entrega-band anim" style="--d:480"><span class="lbl">Entrega da fase</span><p>Empresa com liderança instalada, papéis definidos e rotina de gestão — menos dependência do sócio.</p></div></section>
+<section class="slide divider"><div class="bg-glow glow-a"></div><div class="vign"></div><img class="colm" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkCAYAAAD7PHgWAAABaElEQVR4nO2X0W2DMBBAXxEDZASyAd2A/PanbNB2grYTJIzQ/0pNNkgniKUswAjuBh6hH8bC0EAgBoMqnoQAH0JPh+903J0/H7CIgITpUEAOSLMQFucV8AWkfn0a2QPvgAqKhRPzkQN4RjsRAFsgnlCmiRjYBcwrc3WeAuaZPUMUtgQVcPTjQYou1D8OISC43FoU8DKSUJ2Ey4J5CGRc733RoDol8ko8MxnM0NXcxInhJSWwbolngDB9cIf+nKL2Al8o61oAG7QTdpHsi2MK7psCQVNgLrS1GZvNqBYtdBWUY0q00VXQkAKP1v03upnHwGvtWdNDt1Q7gEJPKp3oKxijJw3DD1pwVVuHUjCh2mclPQRnXySLoCuLoCuLoCuLoCuLoCv/TlDgefS6RXCNHmAPeJDtO24ZBNUfLOUq0sRQezBHZ/aNgbM6ZJFI4INyCxiUy0vHqmJhXR9q973w0WaO6IzetAV+AZRZO5itj/+MAAAAAElFTkSuQmCC" alt="">
+    <div class="qnum">III</div>
+    <div class="q-kicker anim" style="--d:40"><span class="ln"></span> Quarter 3 · Meses 7–9</div>
+    <h1 class="serif anim" style="--d:140">Consistência</h1>
+    <div class="cadpill anim" style="--d:240"><span class="dt"></span> Reuniões quinzenais · 6 encontros</div>
+    <p class="desc anim" style="--d:340">Processos e indicadores tornam o resultado <span class="gold">previsível, não por sorte</span>.</p></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter III · Consistência</div>
+    <div class="thead-line"><h2 class="serif anim" style="--d:120">Consistência em <span class="gold">6 encontros</span></h2>
+    <span class="cadtag anim" style="--d:180"><span class="dt"></span> Quinzenal · 6 encontros</span></div>
+    <div class="weeks"><div class="wk anim" style="--d:300"><span class="tag">Encontro 1</span><h3>Abertura</h3><p>Mapa de processos e indicadores: o que falta padronizar e medir.</p></div><div class="wk anim" style="--d:390"><span class="tag">Encontros 1–5</span><h3>Visita das áreas</h3><p>Processos, indicadores, comercial, governança e padrão.</p></div><div class="wk anim" style="--d:480"><span class="tag">Encontro 5</span><h3>Consolidação</h3><p>Revisamos os ganhos e priorizamos a maior dor de consistência.</p></div><div class="wk anim" style="--d:570"><span class="tag">Encontro 6</span><h3>Plano de Consistência</h3><p>Documentar, implantar indicadores e governança até fechar a fase.</p></div></div></section>
+<section class="slide road-slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter III · Consistência</div>
+    <div class="thead-line"><h2 class="serif anim" style="--d:120">Encontro a encontro</h2>
+    <span class="cadtag anim" style="--d:180"><span class="dt"></span> Quinzenal · 6 encontros</span></div>
+    <div class="roadmap"><svg class="road-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <defs><linearGradient id="rgQ3" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#efdca3"/><stop offset="0.55" stop-color="#c39c4a"/><stop offset="1" stop-color="#9c7a35"/>
+      </linearGradient></defs>
+      <path d="M 12.00 32.00 C 29.10 32.00 32.90 32.00 50.00 32.00 C 67.10 32.00 70.90 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 70.90 70.00 67.10 70.00 50.00 70.00 C 32.90 70.00 29.10 70.00 12.00 70.00" class="road-edge" pathLength="1"/>
+      <path d="M 12.00 32.00 C 29.10 32.00 32.90 32.00 50.00 32.00 C 67.10 32.00 70.90 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 70.90 70.00 67.10 70.00 50.00 70.00 C 32.90 70.00 29.10 70.00 12.00 70.00" class="road-base" pathLength="1"/>
+      <path d="M 12.00 32.00 C 29.10 32.00 32.90 32.00 50.00 32.00 C 67.10 32.00 70.90 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 70.90 70.00 67.10 70.00 50.00 70.00 C 32.90 70.00 29.10 70.00 12.00 70.00" class="road-line" stroke="url(#rgQ3)" pathLength="1"/>
+      <path d="M 12.00 32.00 C 29.10 32.00 32.90 32.00 50.00 32.00 C 67.10 32.00 70.90 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 70.90 70.00 67.10 70.00 50.00 70.00 C 32.90 70.00 29.10 70.00 12.00 70.00" class="road-dash" pathLength="100"/>
+    </svg><div class="stop anim card-top" style="--d:360;left:12.00%;top:32.00%">
+          <div class="stop-disc">1</div>
+          <div class="stop-card"><div class="sw">E1 · Abertura + Processos</div><div class="sf">Mapear e padronizar processos-chave</div><div class="sg">Variação na entrega reduzida</div></div>
+        </div><div class="stop anim card-top" style="--d:440;left:50.00%;top:32.00%">
+          <div class="stop-disc">2</div>
+          <div class="stop-card"><div class="sw">E2 · Indicadores</div><div class="sf">Painel de faturamento, margem e caixa</div><div class="sg">Decisão por número, não por sensação</div></div>
+        </div><div class="stop anim card-top" style="--d:520;left:88.00%;top:32.00%">
+          <div class="stop-disc">3</div>
+          <div class="stop-card"><div class="sw">E3 · Comercial</div><div class="sf">Pipeline, conversão e previsão</div><div class="sg">Receita previsível</div></div>
+        </div><div class="stop anim card-bot" style="--d:600;left:88.00%;top:70.00%">
+          <div class="stop-disc">4</div>
+          <div class="stop-card"><div class="sw">E4 · Governança</div><div class="sf">Reuniões de resultado e correção de rota</div><div class="sg">Gestão sustentada no tempo</div></div>
+        </div><div class="stop anim card-bot" style="--d:680;left:50.00%;top:70.00%">
+          <div class="stop-disc">5</div>
+          <div class="stop-card"><div class="sw">E5 · Padrão + Consolidação</div><div class="sf">Consistência na experiência + priorizar</div><div class="sg">Qualidade previsível</div></div>
+        </div><div class="stop anim card-bot" style="--d:760;left:12.00%;top:70.00%">
+          <div class="stop-disc">6</div>
+          <div class="stop-card"><div class="sw">E6 · Plano + Fechamento</div><div class="sf">Implantar até fechar a fase</div><div class="sg">Resultado previsível · entrega da fase</div></div>
+        </div><ol class="road-mobile"><li class="rm-item"><span class="rm-disc">1</span>
+        <div class="rm-card"><div class="sw">E1 · Abertura + Processos</div><div class="sf">Mapear e padronizar processos-chave</div><div class="sg">Variação na entrega reduzida</div></div></li><li class="rm-item"><span class="rm-disc">2</span>
+        <div class="rm-card"><div class="sw">E2 · Indicadores</div><div class="sf">Painel de faturamento, margem e caixa</div><div class="sg">Decisão por número, não por sensação</div></div></li><li class="rm-item"><span class="rm-disc">3</span>
+        <div class="rm-card"><div class="sw">E3 · Comercial</div><div class="sf">Pipeline, conversão e previsão</div><div class="sg">Receita previsível</div></div></li><li class="rm-item"><span class="rm-disc">4</span>
+        <div class="rm-card"><div class="sw">E4 · Governança</div><div class="sf">Reuniões de resultado e correção de rota</div><div class="sg">Gestão sustentada no tempo</div></div></li><li class="rm-item"><span class="rm-disc">5</span>
+        <div class="rm-card"><div class="sw">E5 · Padrão + Consolidação</div><div class="sf">Consistência na experiência + priorizar</div><div class="sg">Qualidade previsível</div></div></li><li class="rm-item"><span class="rm-disc">6</span>
+        <div class="rm-card"><div class="sw">E6 · Plano + Fechamento</div><div class="sf">Implantar até fechar a fase</div><div class="sg">Resultado previsível · entrega da fase</div></div></li></ol></div></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter III · Consistência</div>
+    <h2 class="serif anim" style="--d:120">Consolidação e Plano</h2>
+    <div class="twocol">
+      <div class="panel anim" style="--d:260"><div class="pt">Encontro 5 · Consolidação</div><ul><li>Revisar os ganhos de processos e indicadores</li><li>Priorizar a maior dor de consistência</li><li>Definir o foco do plano (Encontro 6)</li></ul></div>
+      <div class="panel anim" style="--d:360"><div class="pt">Encontro 6 · Plano de Consistência</div><ul><li>Documentar e implantar os processos críticos</li><li>Colocar o painel de indicadores em rotina</li><li>Instalar a governança e reuniões de resultado</li></ul></div>
+    </div>
+    <div class="entrega-band anim" style="--d:480"><span class="lbl">Entrega da fase</span><p>Empresa com processos, indicadores e governança — resultado previsível, não por sorte.</p></div></section>
+<section class="slide divider"><div class="bg-glow glow-a"></div><div class="vign"></div><img class="colm" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkCAYAAAD7PHgWAAABaElEQVR4nO2X0W2DMBBAXxEDZASyAd2A/PanbNB2grYTJIzQ/0pNNkgniKUswAjuBh6hH8bC0EAgBoMqnoQAH0JPh+903J0/H7CIgITpUEAOSLMQFucV8AWkfn0a2QPvgAqKhRPzkQN4RjsRAFsgnlCmiRjYBcwrc3WeAuaZPUMUtgQVcPTjQYou1D8OISC43FoU8DKSUJ2Ey4J5CGRc733RoDol8ko8MxnM0NXcxInhJSWwbolngDB9cIf+nKL2Al8o61oAG7QTdpHsi2MK7psCQVNgLrS1GZvNqBYtdBWUY0q00VXQkAKP1v03upnHwGvtWdNDt1Q7gEJPKp3oKxijJw3DD1pwVVuHUjCh2mclPQRnXySLoCuLoCuLoCuLoCuLoCv/TlDgefS6RXCNHmAPeJDtO24ZBNUfLOUq0sRQezBHZ/aNgbM6ZJFI4INyCxiUy0vHqmJhXR9q973w0WaO6IzetAV+AZRZO5itj/+MAAAAAElFTkSuQmCC" alt="">
+    <div class="qnum">IV</div>
+    <div class="q-kicker anim" style="--d:40"><span class="ln"></span> Quarter 4 · Meses 10–12</div>
+    <h1 class="serif anim" style="--d:140">Tração</h1>
+    <div class="cadpill anim" style="--d:240"><span class="dt"></span> Reuniões quinzenais · 6 encontros</div>
+    <p class="desc anim" style="--d:340">Crescer com <span class="gold">margem, caixa e expansão sob controle</span>.</p></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter IV · Tração</div>
+    <div class="thead-line"><h2 class="serif anim" style="--d:120">Tração em <span class="gold">6 encontros</span></h2>
+    <span class="cadtag anim" style="--d:180"><span class="dt"></span> Quinzenal · 6 encontros</span></div>
+    <div class="weeks"><div class="wk anim" style="--d:300"><span class="tag">Encontro 1</span><h3>Abertura</h3><p>Mapa de margem, caixa e capacidade real de crescer.</p></div><div class="wk anim" style="--d:390"><span class="tag">Encontros 1–5</span><h3>Visita das áreas</h3><p>Margem, caixa, vendas, expansão e continuidade.</p></div><div class="wk anim" style="--d:480"><span class="tag">Encontro 5</span><h3>Consolidação</h3><p>Revisamos os ganhos do ano e priorizamos as últimas alavancas.</p></div><div class="wk anim" style="--d:570"><span class="tag">Encontro 6</span><h3>Plano e Fechamento</h3><p>Executar, consolidar o ano e preparar o Ano 2 (Elevate).</p></div></div></section>
+<section class="slide road-slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter IV · Tração</div>
+    <div class="thead-line"><h2 class="serif anim" style="--d:120">Encontro a encontro</h2>
+    <span class="cadtag anim" style="--d:180"><span class="dt"></span> Quinzenal · 6 encontros</span></div>
+    <div class="roadmap"><svg class="road-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <defs><linearGradient id="rgQ4" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#efdca3"/><stop offset="0.55" stop-color="#c39c4a"/><stop offset="1" stop-color="#9c7a35"/>
+      </linearGradient></defs>
+      <path d="M 12.00 32.00 C 29.10 32.00 32.90 32.00 50.00 32.00 C 67.10 32.00 70.90 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 70.90 70.00 67.10 70.00 50.00 70.00 C 32.90 70.00 29.10 70.00 12.00 70.00" class="road-edge" pathLength="1"/>
+      <path d="M 12.00 32.00 C 29.10 32.00 32.90 32.00 50.00 32.00 C 67.10 32.00 70.90 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 70.90 70.00 67.10 70.00 50.00 70.00 C 32.90 70.00 29.10 70.00 12.00 70.00" class="road-base" pathLength="1"/>
+      <path d="M 12.00 32.00 C 29.10 32.00 32.90 32.00 50.00 32.00 C 67.10 32.00 70.90 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 70.90 70.00 67.10 70.00 50.00 70.00 C 32.90 70.00 29.10 70.00 12.00 70.00" class="road-line" stroke="url(#rgQ4)" pathLength="1"/>
+      <path d="M 12.00 32.00 C 29.10 32.00 32.90 32.00 50.00 32.00 C 67.10 32.00 70.90 32.00 88.00 32.00 C 99.00 41.50 99.00 60.50 88.00 70.00 C 70.90 70.00 67.10 70.00 50.00 70.00 C 32.90 70.00 29.10 70.00 12.00 70.00" class="road-dash" pathLength="100"/>
+    </svg><div class="stop anim card-top" style="--d:360;left:12.00%;top:32.00%">
+          <div class="stop-disc">1</div>
+          <div class="stop-card"><div class="sw">E1 · Abertura + Margem</div><div class="sf">Preço, mix e gestão de custos</div><div class="sg">Crescer sem perder rentabilidade</div></div>
+        </div><div class="stop anim card-top" style="--d:440;left:50.00%;top:32.00%">
+          <div class="stop-disc">2</div>
+          <div class="stop-card"><div class="sw">E2 · Caixa</div><div class="sf">Fluxo, reservas e previsibilidade</div><div class="sg">Segurança financeira para investir</div></div>
+        </div><div class="stop anim card-top" style="--d:520;left:88.00%;top:32.00%">
+          <div class="stop-disc">3</div>
+          <div class="stop-card"><div class="sw">E3 · Vendas</div><div class="sf">Comercial com rotina e método</div><div class="sg">Receita com previsibilidade</div></div>
+        </div><div class="stop anim card-bot" style="--d:600;left:88.00%;top:70.00%">
+          <div class="stop-disc">4</div>
+          <div class="stop-card"><div class="sw">E4 · Expansão</div><div class="sf">Novos canais e mercados com critério</div><div class="sg">Crescimento sustentável</div></div>
+        </div><div class="stop anim card-bot" style="--d:680;left:50.00%;top:70.00%">
+          <div class="stop-disc">5</div>
+          <div class="stop-card"><div class="sw">E5 · Continuidade + Consolidação</div><div class="sf">Tese do próximo ciclo (Elevate)</div><div class="sg">Visão de futuro com plano</div></div>
+        </div><div class="stop anim card-bot" style="--d:760;left:12.00%;top:70.00%">
+          <div class="stop-disc">6</div>
+          <div class="stop-card"><div class="sw">E6 · Plano + Fechamento do ano</div><div class="sf">Consolidar resultado (balanço Foundation)</div><div class="sg">Pronta para o Ano 2 · Elevate</div></div>
+        </div><ol class="road-mobile"><li class="rm-item"><span class="rm-disc">1</span>
+        <div class="rm-card"><div class="sw">E1 · Abertura + Margem</div><div class="sf">Preço, mix e gestão de custos</div><div class="sg">Crescer sem perder rentabilidade</div></div></li><li class="rm-item"><span class="rm-disc">2</span>
+        <div class="rm-card"><div class="sw">E2 · Caixa</div><div class="sf">Fluxo, reservas e previsibilidade</div><div class="sg">Segurança financeira para investir</div></div></li><li class="rm-item"><span class="rm-disc">3</span>
+        <div class="rm-card"><div class="sw">E3 · Vendas</div><div class="sf">Comercial com rotina e método</div><div class="sg">Receita com previsibilidade</div></div></li><li class="rm-item"><span class="rm-disc">4</span>
+        <div class="rm-card"><div class="sw">E4 · Expansão</div><div class="sf">Novos canais e mercados com critério</div><div class="sg">Crescimento sustentável</div></div></li><li class="rm-item"><span class="rm-disc">5</span>
+        <div class="rm-card"><div class="sw">E5 · Continuidade + Consolidação</div><div class="sf">Tese do próximo ciclo (Elevate)</div><div class="sg">Visão de futuro com plano</div></div></li><li class="rm-item"><span class="rm-disc">6</span>
+        <div class="rm-card"><div class="sw">E6 · Plano + Fechamento do ano</div><div class="sf">Consolidar resultado (balanço Foundation)</div><div class="sg">Pronta para o Ano 2 · Elevate</div></div></li></ol></div></section>
+<section class="slide"><div class="bg-glow glow-b"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Quarter IV · Tração</div>
+    <h2 class="serif anim" style="--d:120">Consolidação e Plano</h2>
+    <div class="twocol">
+      <div class="panel anim" style="--d:260"><div class="pt">Encontro 5 · Consolidação</div><ul><li>Revisar os ganhos somados ao longo do ano</li><li>Priorizar as últimas alavancas de resultado</li><li>Definir o foco do plano final (Encontro 6)</li></ul></div>
+      <div class="panel anim" style="--d:360"><div class="pt">Encontro 6 · Plano e Fechamento</div><ul><li>Executar as alavancas de margem, caixa e vendas</li><li>Consolidar o resultado do ano (balanço Foundation)</li><li>Definir a tese de continuidade do Ano 2</li></ul></div>
+    </div>
+    <div class="entrega-band anim" style="--d:480"><span class="lbl">Entrega da fase</span><p>Empresa pronta para crescer com controle e tese estratégica para o Ano 2 — Elevate.</p></div></section>
+<section class="slide"><div class="bg-glow glow-a"></div><div class="vign"></div>
+    <div class="kicker anim" style="--d:40">Foundation · Resultado do ano</div>
+    <h2 class="serif anim" style="--d:120">Um ano para transformar gestão dispersa em <span class="gold">crescimento com controle</span></h2>
+    <div class="outcome">
+      <div class="oc anim" style="--d:300"><div class="num">I</div><div class="big">Clareza</div><p>Você enxerga e decide por número.</p></div>
+      <div class="oc anim" style="--d:400"><div class="num">II</div><div class="big">Liderança</div><p>Time e papéis funcionando sem o sócio no centro.</p></div>
+      <div class="oc anim" style="--d:500"><div class="num">III</div><div class="big">Consistência</div><p>Processos e indicadores previsíveis.</p></div>
+      <div class="oc anim" style="--d:600"><div class="num">IV</div><div class="big">Tração</div><p>Margem, caixa e expansão com controle.</p></div>
+    </div>
+    <div class="elevate anim" style="--d:720"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkCAYAAAD7PHgWAAABaElEQVR4nO2X0W2DMBBAXxEDZASyAd2A/PanbNB2grYTJIzQ/0pNNkgniKUswAjuBh6hH8bC0EAgBoMqnoQAH0JPh+903J0/H7CIgITpUEAOSLMQFucV8AWkfn0a2QPvgAqKhRPzkQN4RjsRAFsgnlCmiRjYBcwrc3WeAuaZPUMUtgQVcPTjQYou1D8OISC43FoU8DKSUJ2Ey4J5CGRc733RoDol8ko8MxnM0NXcxInhJSWwbolngDB9cIf+nKL2Al8o61oAG7QTdpHsi2MK7psCQVNgLrS1GZvNqBYtdBWUY0q00VXQkAKP1v03upnHwGvtWdNDt1Q7gEJPKp3oKxijJw3DD1pwVVuHUjCh2mclPQRnXySLoCuLoCuLoCuLoCuLoCv/TlDgefS6RXCNHmAPeJDtO24ZBNUfLOUq0sRQezBHZ/aNgbM6ZJFI4INyCxiUy0vHqmJhXR9q973w0WaO6IzetAV+AZRZO5itj/+MAAAAAElFTkSuQmCC" alt=""><p><b>Continuidade.</b> Concluída a Foundation, a empresa entra no <b>Ano 2 · Elevate</b> — o ciclo de escala, com a tese estratégica de crescimento já definida na Tração.</p></div></section>
+</div>
+<div class="nav-dots" id="dots"></div><div class="hint"><kbd>←</kbd><kbd>→</kbd> navegar</div>
+<div class="edge l" id="edgeL"></div><div class="edge r" id="edgeR"></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];const dotsWrap=document.getElementById('dots'),prog=document.getElementById('prog');
+const curEl=document.getElementById('cur'),totEl=document.getElementById('tot');let i=0;totEl.textContent=String(slides.length).padStart(2,'0');
+slides.forEach((s,n)=>{const b=document.createElement('button');b.addEventListener('click',()=>go(n));dotsWrap.appendChild(b);});const dots=[...dotsWrap.children];
+function go(n){n=Math.max(0,Math.min(slides.length-1,n));slides[i].classList.remove('active');i=n;slides[i].classList.add('active');
+dots.forEach((d,k)=>d.classList.toggle('on',k===i));prog.style.width=(i/(slides.length-1)*100)+'%';curEl.textContent=String(i+1).padStart(2,'0');
+const a=slides[i].querySelectorAll('.anim');a.forEach(el=>{el.style.transition='none';el.classList.remove('active');});void slides[i].offsetWidth;a.forEach(el=>{el.style.transition='';});
+const f=slides[i].querySelector('#tlfill');if(f){f.style.width='0';void f.offsetWidth;requestAnimationFrame(()=>f.style.width='88%');}}
+window.go=go;function next(){go(i+1)}function prev(){go(i-1)}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next()}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);});
+document.getElementById('edgeR').addEventListener('click',next);document.getElementById('edgeL').addEventListener('click',prev);
+let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)dx<0?next():prev()},{passive:true});
+go(0);
+</script></body></html>
